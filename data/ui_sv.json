@@ -10,12 +10,17 @@
   "sum" :"Summa",
   "ordersFinished" : "Färdiga beställningar",
   "ordersInQueue" : "Beställningar att förbereda",
+  "ordersSummary":"Summa Ingredienser",
   "ordersTrending" : "Populära beställningar",
   "placeOrder" : "Beställ",
   "sideorders" : "Tillbehör",
   "ingredients" : "Ingredienser",
   "ready" : "Klart",
   "order" : "Min burgare",
+<<<<<<< HEAD
   "language" : "English",
   "headline" : "Välkommen till Craft Burgers"
+=======
+  "language" : "English"
+>>>>>>> 42f849396eab68636c400ee9ef13f5c9eabc7941
 }
