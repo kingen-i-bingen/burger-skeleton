@@ -1,36 +1,47 @@
 <template>
   <div id="ordering">
-    <img class="example-panel" src="@/assets/exampleImage.jpg">
-    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
-
-    <h1>{{ uiLabels.ingredients }}</h1>
-
-    <Ingredient
-      ref="ingredient"
-      v-for="item in ingredients"
-      v-on:increment="addToOrder(item)"  
-      :item="item" 
-      :lang="lang"
-      :key="item.ingredient_id">
-    </Ingredient>
-
+    <header id="header">
+        <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
+        <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+        <h1>{{ uiLabels.headline }}</h1>
+    </header>
+    <div class="wrapper">
+      <h1>{{ uiLabels.ingredients }}</h1>
+      <div class="Box a">
+          <Ingredient
+          ref="ingredient"
+          v-for="item in ingredients"
+          v-on:increment="addToOrder(item)"
+          v-on:remove="removeFromOrder(item)"
+          :item="item"
+          :lang="lang"
+          :key="item.ingredient_id">
+          </Ingredient>
+        </div>
+      <div class="Box b">
     <h1>{{ uiLabels.order }}</h1>
-    {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
+    <div v-for ="chosen in chosenIngredients">
+    <!-- {{ chosenIngredients.map(item => item["ingredient_"+lang]).join("\n") }}, {{ price }} kr -->
+    {{chosen["ingredient_"+lang] }}:  {{chosen["selling_price"]}} :-<br>
+    </div>
+    <br>
+    {{ price }} kr
     <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
-
     <h1>{{ uiLabels.ordersInQueue }}</h1>
-    <div>
-      <OrderItem 
-        v-for="(order, key) in orders"
-        v-if="order.status !== 'done'"
-        :order-id="key"
-        :order="order" 
-        :ui-labels="uiLabels"
-        :lang="lang"
-        :key="key">
-      </OrderItem>
+      <div>
+        <OrderItem
+              v-for="(order, key) in orders"
+              v-if="order.status !== 'done'"
+              :order-id="key"
+              :order="order"
+              :ui-labels="uiLabels"
+              :lang="lang"
+              :key="key">
+        </OrderItem>
+      </div>
     </div>
   </div>
+</div>
 </template>
 <script>
 
@@ -43,7 +54,7 @@ import OrderItem from '@/components/OrderItem.vue'
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
 
-/* instead of defining a Vue instance, export default allows the only 
+/* instead of defining a Vue instance, export default allows the only
 necessary Vue instance (found in main.js) to import your data and methods */
 export default {
   name: 'Ordering',
@@ -51,7 +62,7 @@ export default {
     Ingredient,
     OrderItem
   },
-  mixins: [sharedVueStuff], // include stuff that is used in both 
+  mixins: [sharedVueStuff], // include stuff that is used in both
                             // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
@@ -69,6 +80,10 @@ export default {
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
+    },
+    removeFromOrder: function (item){
+      this.chosenIngredients.splice(this.chosenIngredients.indexOf(item),1);
+      this.price += -item.selling_price;
     },
     placeOrder: function () {
       var i,
@@ -92,8 +107,38 @@ export default {
 <style scoped>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 #ordering {
-  margin:auto;
-  width: 40em;
+  margin: 0em 2vw;
+  /* margin:auto; */
+  /* width: 40em; */
+}
+#header h1{
+  text-align: center;
+}
+
+.wrapper{
+display:grid;
+grid-template-columns: 66vw 30vw;
+grid-gap: 2em;
+}
+
+.a{
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,12em);
+  grid-gap:1em
+}
+
+.b{
+  position: fixed;
+  right: 1em;
+  border: 3px solid #ccd;
+  border-radius: 1em;
+  height: 90vh;
+  width: 25vw;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  text-align: center;
+
 }
 
 .example-panel {
@@ -107,5 +152,7 @@ export default {
   padding: 1em;
   background-image: url('~@/assets/exampleImage.jpg');
   color: white;
+  border-radius: 2em;
+  text-align: center;
 }
 </style>

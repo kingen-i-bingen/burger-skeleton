@@ -1,8 +1,9 @@
 <template>
   <div class="ingredient">
     <label>
-      <button v-on:click="incrementCounter">{{ counter }}</button>
-      {{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{item.stock}} pcs
+      {{item["ingredient_"+ lang]}} <br> {{item.selling_price}}:-, {{item.stock}} pcs<br>
+      <button v-on:click="removeCounter">-</button>       {{ counter }}    <button v-on:click="incrementCounter">+</button>
+      <!-- <button v-on:click="incrementCounter">{{ counter }}</button>  BORTAGEN-->
     </label>
   </div>
 </template>
@@ -25,6 +26,14 @@ export default {
       // can catch it with v-on:increment in the component declaration
       this.$emit('increment');
     },
+      removeCounter:function () {
+        if(this.counter > 0){
+        this.counter -= 1;
+        // sending 'remove' message to parent component or view so that it
+        // can catch it with v-on:remove in the component declaration
+        this.$emit('remove');
+      }
+      },
     resetCounter: function () {
       this.counter = 0;
     }
@@ -32,5 +41,4 @@ export default {
 }
 </script>
 <style scoped>
-  
 </style>
