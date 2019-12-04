@@ -1,7 +1,7 @@
 <template>
 <div id="orders">
+<div id="ordersQueue">
   <h1>{{ uiLabels.ordersInQueue }}</h1>
-  <div id="ordersQueue">
     <OrderItemToPrepare
       v-for="(order, key) in orders"
       v-if="order.status !== 'done'"
@@ -11,10 +11,20 @@
       :ui-labels="uiLabels"
       :lang="lang"
       :key="key">
+
     </OrderItemToPrepare>
   </div>
-  <h1>{{ uiLabels.ordersFinished }}</h1>
+
+  <div id="summaryOrder">
+     <h1> {{uiLabels.ordersSummary}}</h1>
+
+
+
+
+  </div>
+
   <div id="finishedOrder">
+    <h1>{{ uiLabels.ordersFinished }}</h1>
     <OrderItem
       v-for="(order, key) in orders"
       v-if="order.status === 'done'"
@@ -25,16 +35,13 @@
       :key="key">
     </OrderItem>
   </div>
-    <h1> {{uiLabels.ordersSummary}}</h1>
-      <div id="summaryOrder">
-      </div>
-
 
 </div>
 </template>
 <script>
 import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
+
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -43,7 +50,8 @@ export default {
   name: 'Ordering',
   components: {
     OrderItem,
-    OrderItemToPrepare
+    OrderItemToPrepare,
+
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
@@ -54,6 +62,7 @@ export default {
     }
   },
   methods: {
+
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
     }
@@ -65,27 +74,55 @@ export default {
 
 
 	#orders {
-    font-size:24pt;
+    font-size:16pt;
     display:grid;
-    grid-gap:10px;
-    grid-template-columns: 15em;
+    grid-gap:1px;
+    grid-template-columns:33,33333333333vw 33,333333333333vw 33,33333333333vw;
+    background-color: lightblue;
 
   }
 
-  #ordersQueue{
 
-  }
+#ordersQueue{
+grid-column:1;
+grid-row: 1;
+border: 2px solid #ff9900;
+margin:5px;
+padding: 10px;
 
-  #finishedOrder{
+
 
   }
 
   #summaryOrder {
+grid-column: 2;
+grid-row: 1;
+border: 2px solid #ff9900;
+margin:5px;
+padding: 10px;
+
+
 
   }
+
+
+  #finishedOrder{
+grid-column:3;
+grid-row: 1;
+border: 2px solid #ff9900;
+margin:5px;
+padding: 10px;
+
+
+  }
+
+
 
   h1 {
     text-transform: uppercase;
     font-size: 1.4em;
+    text-align: center;
+    border-bottom: solid 1px black;
+
   }
 </style>
