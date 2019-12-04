@@ -1,20 +1,20 @@
 <template>
 <div id="orders">
   <h1>{{ uiLabels.ordersInQueue }}</h1>
-  <div>
+  <div id="ordersQueue">
     <OrderItemToPrepare
       v-for="(order, key) in orders"
       v-if="order.status !== 'done'"
       v-on:done="markDone(key)"
       :order-id="key"
-      :order="order" 
+      :order="order"
       :ui-labels="uiLabels"
       :lang="lang"
       :key="key">
     </OrderItemToPrepare>
   </div>
   <h1>{{ uiLabels.ordersFinished }}</h1>
-  <div>
+  <div id="finishedOrder">
     <OrderItem
       v-for="(order, key) in orders"
       v-if="order.status === 'done'"
@@ -25,7 +25,12 @@
       :key="key">
     </OrderItem>
   </div>
-</div>	
+    <h1> {{uiLabels.ordersSummary}}</h1>
+      <div id="summaryOrder">
+      </div>
+
+
+</div>
 </template>
 <script>
 import OrderItem from '@/components/OrderItem.vue'
@@ -40,7 +45,7 @@ export default {
     OrderItem,
     OrderItemToPrepare
   },
-  mixins: [sharedVueStuff], // include stuff that is used in both 
+  mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
   data: function(){
     return {
@@ -56,8 +61,27 @@ export default {
 }
 </script>
 <style scoped>
+
+
+
 	#orders {
     font-size:24pt;
+    display:grid;
+    grid-gap:10px;
+    grid-template-columns: 15em;
+
+  }
+
+  #ordersQueue{
+
+  }
+
+  #finishedOrder{
+
+  }
+
+  #summaryOrder {
+
   }
 
   h1 {
