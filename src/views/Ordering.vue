@@ -129,9 +129,16 @@ grid-gap: 2em;
 }
 
 .b{
-  border: 1px solid #ccd;
+  position: fixed;
+  right: 1em;
+  border: 3px solid #ccd;
+  border-radius: 1em;
+  height: 90vh;
+  width: 25vw;
   grid-column: 2;
   grid-row: 1 / span 2;
+  text-align: center;
+
 }
 
 .example-panel {
