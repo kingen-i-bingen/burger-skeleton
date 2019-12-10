@@ -231,7 +231,7 @@ grid-gap: 2em;
   display: grid;
   grid-template-columns: repeat(auto-fill,12em);
   grid-gap:1em;
-  overflow: scroll;
+  overflow-y:auto;
   grid-row: 3;
   margin-bottom: 15vh;
 }
@@ -251,7 +251,7 @@ grid-gap: 2em;
   grid-column: 2;
   grid-row: 1 / span 3;
   text-align: center;
-  overflow: scroll;
+  overflow-y: auto;
 
 }
 
