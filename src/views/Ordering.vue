@@ -36,7 +36,7 @@
     <h1>{{ uiLabels.order }}</h1>
     <div v-for="chosen in countAllIngredients" :key="countAllIngredients.indexOf(chosen)">
     <!-- {{ chosenIngredients.map(item => item["ingredient_"+lang]).join("\n") }}, {{ price }} kr   {{chosen["ingredient_"+lang] }} -->
-    {{ chosen.count }}x  {{chosen.name}} :-<br>
+    {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice*chosen.count}} :-<br>
     </div>
     <br>
     {{ price }} kr
@@ -97,15 +97,18 @@ export default {
       for (let i = 0; i < this.chosenIngredients.length; i += 1) {
         ingredientTuples[i] = {};
         ingredientTuples[i].name = this.chosenIngredients[i]['ingredient_' + this.lang];
+        ingredientTuples[i].itemPrice = this.chosenIngredients[i]['selling_price'];
         ingredientTuples[i].count = this.countNumberOfIngredients(this.chosenIngredients[i].ingredient_id);
       }
       var difIngredients = Array.from(new Set(ingredientTuples.map(o => o.name)))
       .map(name=> {
         return{
           name: name,
+          itemPrice: ingredientTuples.find(o => o.name === name).itemPrice,
           count: ingredientTuples.find(o => o.name === name).count
                           };
                         });
+                console.log(difIngredients);
                 return difIngredients;
           },
     arrayOfLabels: function() {
