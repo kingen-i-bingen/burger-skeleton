@@ -185,10 +185,15 @@ text-decoration: none;
 display: inline-block;
 font-size: 16px;
 border-radius: 8px;
+position: fixed;
+top: 90vh;
+right: 29vw;
+opacity: 0.9;
 }
 #NextButton:hover{
 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 cursor:pointer;
+transform:scale(1.1);
 }
 
 #PreviousButton {
@@ -201,11 +206,15 @@ text-decoration: none;
 display: inline-block;
 font-size: 16px;
 border-radius: 8px;
+position: fixed;
+top: 90vh;
+opacity: 0.9;
 }
 
 #PreviousButton:hover{
 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 cursor:pointer;
+transform:scale(1.1);
 }
 .wrapper{
 display:grid;
@@ -221,22 +230,28 @@ grid-gap: 2em;
   grid-column: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill,12em);
-  grid-gap:1em
+  grid-gap:1em;
+  overflow: scroll;
+  grid-row: 3;
+  margin-bottom: 15vh;
 }
 .b{
   grid-column: 1;
   grid-row: 4;
+  position: sticky;
 }
 .c{
   position: fixed;
-  right: 1em;
+  right: 2vw;
   border: 3px solid #ccd;
   border-radius: 1em;
-  height: 90vh;
+  height: 80vh;
   width: 25vw;
+  top:15vh;
   grid-column: 2;
   grid-row: 1 / span 3;
   text-align: center;
+  overflow: scroll;
 
 }
 
