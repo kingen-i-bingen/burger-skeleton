@@ -6,7 +6,7 @@
         <h1>{{ uiLabels.headline }}</h1>
     </header>
     <div class="wrapper">
-      <h1 id="category">{{ uiLabels.arrayOfLabels[this.category-1] }}</h1>
+      <h1 id="category">{{ arrayOfLabels }}</h1>
 
       <div class="tab">
         <button class="tablinks" v-on:click="changeCategory(1)">Patty</button>
@@ -16,7 +16,6 @@
         <button class="tablinks" v-on:click="changeCategory(5)">Sides</button>
         <button class="tablinks" v-on:click="changeCategory(6)">Drinks</button>
       </div>
-      
       <div class="Box a">
           <Ingredient
           ref="ingredient"
@@ -35,9 +34,9 @@
         </div>
       <div class="Box c">
     <h1>{{ uiLabels.order }}</h1>
-    <div v-for="chosen in chosenIngredients">
+    <div v-for="chosen in countAllIngredients" :key="countAllIngredients.indexOf(chosen)">
     <!-- {{ chosenIngredients.map(item => item["ingredient_"+lang]).join("\n") }}, {{ price }} kr   {{chosen["ingredient_"+lang] }} -->
-    {{ chosen["ingredient_"+lang] }}:  {{chosen["selling_price"]}} :-<br>
+    {{ chosen.count }}x  {{chosen.name}} :-<br>
     </div>
     <br>
     {{ price }} kr
@@ -92,15 +91,44 @@ export default {
       this.orderNumber = data;
     }.bind(this));
   },
+  computed: {
+    countAllIngredients: function() {
+      let ingredientTuples = []
+      for (let i = 0; i < this.chosenIngredients.length; i += 1) {
+        ingredientTuples[i] = {};
+        ingredientTuples[i].name = this.chosenIngredients[i]['ingredient_' + this.lang];
+        ingredientTuples[i].count = this.countNumberOfIngredients(this.chosenIngredients[i].ingredient_id);
+      }
+      var difIngredients = Array.from(new Set(ingredientTuples.map(o => o.name)))
+      .map(name=> {
+        return{
+          name: name,
+          count: ingredientTuples.find(o => o.name === name).count
+                          };
+                        });
+                return difIngredients;
+          },
+    arrayOfLabels: function() {
+      return this.uiLabels.arrayOfLabels[this.category-1]
+    }
+  },
   methods: {
     changeCategory: function (number) {
       this.category = number;
     },
-
+    countNumberOfIngredients: function (id) {
+      let counter = 0;
+      for (let item in this.chosenIngredients) {
+              if (this.chosenIngredients[item].ingredient_id === id) {
+                counter +=1;
+              }
+          }
+      return counter;
+    },
     nextCategory: function (){
-    if (this.category<6){
-      this.category += 1;
-    }
+      if (this.category<6){
+        this.category += 1;
+      }
     },
     previousCategory: function (){
       if (this.category>1){
