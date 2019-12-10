@@ -10,12 +10,12 @@
       <h1 id="category">{{ arrayOfLabels }}</h1>
 
       <div class="tabs">
-        <button class="tablinks" v-on:click="changeCategory(1, 'tab1')" :class="{active: activeTab === 'tab1' }">Patty</button>
-        <button class="tablinks" v-on:click="changeCategory(2, 'tab2')" :class="{active: activeTab === 'tab2' }">Toppings</button>
-        <button class="tablinks" v-on:click="changeCategory(3, 'tab3')" :class="{active: activeTab === 'tab3' }">Sauce</button>
-        <button class="tablinks" v-on:click="changeCategory(4, 'tab4')" :class="{active: activeTab === 'tab4' }">Bread</button>
-        <button class="tablinks" v-on:click="changeCategory(5, 'tab5')" :class="{active: activeTab === 'tab5' }">Sides</button>
-        <button class="tablinks" v-on:click="changeCategory(6, 'tab6')" :class="{active: activeTab === 'tab6' }">Drinks</button>
+        <button class="tablinks" v-on:click="changeCategory(1, 'tab1')" :class="{active: activeTab === 'tab1' }">{{ uiLabels.arrayOfLabels[0]}}</button>
+        <button class="tablinks" v-on:click="changeCategory(2, 'tab2')" :class="{active: activeTab === 'tab2' }">{{ uiLabels.arrayOfLabels[1] }}</button>
+        <button class="tablinks" v-on:click="changeCategory(3, 'tab3')" :class="{active: activeTab === 'tab3' }">{{ uiLabels.arrayOfLabels[2] }}</button>
+        <button class="tablinks" v-on:click="changeCategory(4, 'tab4')" :class="{active: activeTab === 'tab4' }">{{ uiLabels.arrayOfLabels[3] }}</button>
+        <button class="tablinks" v-on:click="changeCategory(5, 'tab5')" :class="{active: activeTab === 'tab5' }">{{ uiLabels.arrayOfLabels[4] }}</button>
+        <button class="tablinks" v-on:click="changeCategory(6, 'tab6')" :class="{active: activeTab === 'tab6' }">{{ uiLabels.arrayOfLabels[5] }}</button>
       </div>
 
       <div class="Box a">
