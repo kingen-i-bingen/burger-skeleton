@@ -31,8 +31,8 @@
           </Ingredient>
         </div>
         <div class="Box b">
-          <button id="PreviousButton" v-on:click="previousCategory()">{{uiLabels.previous}}</button>
-          <button id="NextButton" v-on:click="nextCategory()">{{uiLabels.next}}</button>
+          <button id="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1">{{uiLabels.previous}}</button>
+          <button id="NextButton" v-on:click="nextCategory()" v-show="category != 6">{{uiLabels.next}}</button>
         </div>
       <div class="Box c">
     <h1>{{ uiLabels.order }}</h1>
@@ -262,9 +262,12 @@ transform:scale(1.1);
   box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
   transform:scale(1.05);
 }
+#PreviousButton:disabled{
+  opacity: 50%;
+  pointer-events: none;
+}
 
 .tablinks {
-  background-color: inherit;
   float: left;
   border-width: 0.1em;
   border-color: darkgray;
@@ -275,18 +278,20 @@ transform:scale(1.1);
   padding: 14px 16px;
   transition: 0.3s;
   background-color: #ddd;
+
 }
 
 .tablinks:hover {
 
-  transform:scale(1.1);
+  transform:scale(1.05);
   box-shadow:1px 1px 3px rgba(0,0,0,0.5);
-  background-color: inherit;
+  background-color: white;
 }
 
 .active {
   background-color: inherit;
   border-bottom: none;
+
 }
 
 
