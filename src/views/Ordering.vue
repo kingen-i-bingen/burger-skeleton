@@ -9,14 +9,15 @@
     <div class="wrapper">
       <h1 id="category">{{ arrayOfLabels }}</h1>
 
-      <div class="tab">
-        <button class="tablinks" v-on:click="changeCategory(1)">Patty</button>
-        <button class="tablinks" v-on:click="changeCategory(2)">Toppings</button>
-        <button class="tablinks" v-on:click="changeCategory(3)">Sauce</button>
-        <button class="tablinks" v-on:click="changeCategory(4)">Bread</button>
-        <button class="tablinks" v-on:click="changeCategory(5)">Sides</button>
-        <button class="tablinks" v-on:click="changeCategory(6)">Drinks</button>
+      <div class="tabs">
+        <button class="tablinks" v-on:click="changeCategory(1, 'tab1')" :class="{active: activeTab === 'tab1' }">Patty</button>
+        <button class="tablinks" v-on:click="changeCategory(2, 'tab2')" :class="{active: activeTab === 'tab2' }">Toppings</button>
+        <button class="tablinks" v-on:click="changeCategory(3, 'tab3')" :class="{active: activeTab === 'tab3' }">Sauce</button>
+        <button class="tablinks" v-on:click="changeCategory(4, 'tab4')" :class="{active: activeTab === 'tab4' }">Bread</button>
+        <button class="tablinks" v-on:click="changeCategory(5, 'tab5')" :class="{active: activeTab === 'tab5' }">Sides</button>
+        <button class="tablinks" v-on:click="changeCategory(6, 'tab6')" :class="{active: activeTab === 'tab6' }">Drinks</button>
       </div>
+
       <div class="Box a">
           <Ingredient
           ref="ingredient"
@@ -85,7 +86,8 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-      category: 1
+      category: 1,
+      activeTab: 'tab1'
     }
   },
   created: function () {
@@ -118,8 +120,10 @@ export default {
     }
   },
   methods: {
-    changeCategory: function (number) {
+    changeCategory: function (number, button) {
       this.category = number;
+      this.activeTab = button;
+
     },
     countNumberOfIngredients: function (id) {
       let counter = 0;
@@ -133,11 +137,13 @@ export default {
     nextCategory: function (){
       if (this.category<6){
         this.category += 1;
+        this.activeTab= "tab"+this.category;
       }
     },
     previousCategory: function (){
       if (this.category>1){
         this.category -= 1;
+        this.activeTab= "tab"+this.category;
       }
     },
     addToOrder: function (item) {
@@ -248,12 +254,38 @@ box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 cursor:pointer;
 transform:scale(1.1);
 }
+
+.tablinks {
+  background-color: inherit;
+  float: left;
+  border-width: 0.1em;
+  border-color: darkgray;
+  border-bottom: none;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+.tablinks:hover {
+  background-color: #ddd;
+  transform:scale(1.1);
+  box-shadow:1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.active {
+  background-color: #ccc;
+}
+
+
 .wrapper{
 display:grid;
 grid-template-columns: 66vw 30vw;
 grid-gap: 2em;
 }
-.tab{
+.tabs{
   grid-column: 1;
   grid-row: 2;
 
