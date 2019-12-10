@@ -1,4 +1,5 @@
 <template>
+  <body>
   <div id="ordering">
     <header id="header">
         <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
@@ -56,6 +57,7 @@
     </div>
   </div>
 </div>
+</body>
 </template>
 <script>
 
@@ -172,8 +174,35 @@ export default {
   /* margin:auto; */
   /* width: 40em; */
 }
+
+body{
+font-family: helvetica;
+
+}
+
+h1{
+  font-weight: lighter;
+}
+
 #header h1{
   text-align: center;
+  font-weight: lighter;
+
+}
+
+#header button{
+  background-color: #E8E5E2; //Villes secial light grey
+  border-radius:8px;
+  border:none;
+  padding: 10px 25px;
+  text-align: center;
+  color: black;
+
+}
+
+#header button:hover{
+  cursor:pointer;
+  transform:scale(1.1);
 }
 #category{
   text-align: center;
