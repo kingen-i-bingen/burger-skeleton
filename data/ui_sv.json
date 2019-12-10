@@ -18,5 +18,7 @@
   "ready" : "Klart",
   "order" : "Min burgare",
   "language" : "English",
-  "headline" : "Välkommen till Craft Burgers"
+  "headline" : "Välkommen till Craft Burgers",
+  "next" : "Nästa",
+  "previous" : "Tillbaka"
 }

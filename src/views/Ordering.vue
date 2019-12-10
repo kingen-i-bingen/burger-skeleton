@@ -11,6 +11,7 @@
           <Ingredient
           ref="ingredient"
           v-for="item in ingredients"
+          v-show="item.category===category"
           v-on:increment="addToOrder(item)"
           v-on:remove="removeFromOrder(item)"
           :item="item"
@@ -18,11 +19,14 @@
           :key="item.ingredient_id">
           </Ingredient>
         </div>
-      <div class="Box b">
+        <div class="Box b">
+        <button v-on:click="nextCategory()">{{uiLabels.next}}</button><button v-on:click="previousCategory()">{{uiLabels.previous}}</button>
+        </div>
+      <div class="Box c">
     <h1>{{ uiLabels.order }}</h1>
-    <div v-for ="chosen in chosenIngredients">
-    <!-- {{ chosenIngredients.map(item => item["ingredient_"+lang]).join("\n") }}, {{ price }} kr -->
-    {{chosen["ingredient_"+lang] }}:  {{chosen["selling_price"]}} :-<br>
+    <div v-for="chosen in chosenIngredients">
+    <!-- {{ chosenIngredients.map(item => item["ingredient_"+lang]).join("\n") }}, {{ price }} kr   {{chosen["ingredient_"+lang] }} -->
+    {{ chosen["ingredient_"+lang] }}:  {{chosen["selling_price"]}} :-<br>
     </div>
     <br>
     {{ price }} kr
@@ -69,6 +73,7 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
+      category: 1
     }
   },
   created: function () {
@@ -77,6 +82,16 @@ export default {
     }.bind(this));
   },
   methods: {
+    nextCategory: function (){
+    if (this.category<6){
+      this.category += 1;
+    }
+    },
+    previousCategory: function (){
+      if (this.category>1){
+        this.category -= 1;
+      }
+    },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
@@ -127,8 +142,12 @@ grid-gap: 2em;
   grid-template-columns: repeat(auto-fill,12em);
   grid-gap:1em
 }
-
 .b{
+  display: grid;
+  grid-column: 1;
+  grid-row: 3;
+}
+.c{
   position: fixed;
   right: 1em;
   border: 3px solid #ccd;
@@ -136,7 +155,7 @@ grid-gap: 2em;
   height: 90vh;
   width: 25vw;
   grid-column: 2;
-  grid-row: 1 / span 2;
+  grid-row: 1 / span 3;
   text-align: center;
 
 }

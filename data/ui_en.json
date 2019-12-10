@@ -18,5 +18,7 @@
   "ready" : "Done",
   "order" : "My burger",
   "language" : "Svenska",
-  "headline" : "Welcome to Craft Burgers"
+  "headline" : "Welcome to Craft Burgers",
+  "next" : "Next Category",
+  "previous" : "Previous Category"
 }
