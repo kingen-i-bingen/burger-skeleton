@@ -7,7 +7,7 @@
         <h1>{{ uiLabels.headline }}</h1>
     </header>
     <div class="wrapper">
-      <h1 id="category">{{ arrayOfLabels }}</h1>
+      <h1 id="category"> {{uiLabels.choose}} {{ arrayOfLabels }}</h1>
 
       <div class="tabs">
         <button class="tablinks" v-on:click="changeCategory(1, 'tab1')" :class="{active: activeTab === 'tab1' }">{{ uiLabels.arrayOfLabels[0]}}</button>

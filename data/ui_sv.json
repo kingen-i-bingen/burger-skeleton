@@ -21,5 +21,6 @@
   "headline" : "Välkommen till Craft Burgers",
   "next" : "Nästa",
   "previous" : "Tillbaka",
-  "arrayOfLabels" : ["Välj protein", "Välj pålägg", "Välj dressing", "Välj bröd", "Välj tillbehör","Välj dryck"]
+  "choose" : "Välj",
+  "arrayOfLabels" : ["Protein", "Pålägg", "Dressing", "Bröd", "Tillbehör","Dryck"]
 }
