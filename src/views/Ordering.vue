@@ -7,6 +7,16 @@
     </header>
     <div class="wrapper">
       <h1 id="category">{{ uiLabels.arrayOfLabels[this.category-1] }}</h1>
+
+      <div class="tab">
+        <button class="tablinks" v-on:click="changeCategory(1)">Patty</button>
+        <button class="tablinks" v-on:click="changeCategory(2)">Toppings</button>
+        <button class="tablinks" v-on:click="changeCategory(3)">Sauce</button>
+        <button class="tablinks" v-on:click="changeCategory(4)">Bread</button>
+        <button class="tablinks" v-on:click="changeCategory(5)">Sides</button>
+        <button class="tablinks" v-on:click="changeCategory(6)">Drinks</button>
+      </div>
+      
       <div class="Box a">
           <Ingredient
           ref="ingredient"
@@ -20,7 +30,8 @@
           </Ingredient>
         </div>
         <div class="Box b">
-        <button id="NextButton" v-on:click="nextCategory()">{{uiLabels.next}}</button><button id="PreviousButton" v-on:click="previousCategory()">{{uiLabels.previous}}</button>
+          <button id="PreviousButton" v-on:click="previousCategory()">{{uiLabels.previous}}</button>
+          <button id="NextButton" v-on:click="nextCategory()">{{uiLabels.next}}</button>
         </div>
       <div class="Box c">
     <h1>{{ uiLabels.order }}</h1>
@@ -82,6 +93,10 @@ export default {
     }.bind(this));
   },
   methods: {
+    changeCategory: function (number) {
+      this.category = number;
+    },
+
     nextCategory: function (){
     if (this.category<6){
       this.category += 1;
@@ -169,7 +184,11 @@ display:grid;
 grid-template-columns: 66vw 30vw;
 grid-gap: 2em;
 }
+.tab{
+  grid-column: 1;
+  grid-row: 2;
 
+}
 .a{
   grid-column: 1;
   display: grid;
@@ -177,9 +196,8 @@ grid-gap: 2em;
   grid-gap:1em
 }
 .b{
-  display: grid;
   grid-column: 1;
-  grid-row: 3;
+  grid-row: 4;
 }
 .c{
   position: fixed;
