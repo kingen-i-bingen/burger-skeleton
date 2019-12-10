@@ -20,5 +20,6 @@
   "language" : "Svenska",
   "headline" : "Welcome to Craft Burgers",
   "next" : "Next Category",
-  "previous" : "Previous Category"
+  "previous" : "Previous Category",
+  "arrayOfLabels" : ["Choose patty", "Choose toppings", "Choose sauce", "Choose bread", "Choose sides","Choose drink"]
 }

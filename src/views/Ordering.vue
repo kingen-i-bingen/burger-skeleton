@@ -6,7 +6,7 @@
         <h1>{{ uiLabels.headline }}</h1>
     </header>
     <div class="wrapper">
-      <h1>{{ uiLabels.ingredients }}</h1>
+      <h1 id="category">{{ uiLabels.arrayOfLabels[this.category-1] }}</h1>
       <div class="Box a">
           <Ingredient
           ref="ingredient"
@@ -127,6 +127,9 @@ export default {
   /* width: 40em; */
 }
 #header h1{
+  text-align: center;
+}
+#category{
   text-align: center;
 }
 #NextButton {
