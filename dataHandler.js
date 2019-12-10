@@ -33,6 +33,7 @@ Data.prototype.getIngredients = function () {
         return sum;
       }
     }, 0);
+    console.log(obj)
     return obj;
   });
 };
@@ -111,6 +112,3 @@ Data.prototype.markOrderNotStarted = function (orderId) {
 };
 
 module.exports = Data;
-
-
-

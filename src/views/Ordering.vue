@@ -20,7 +20,7 @@
           </Ingredient>
         </div>
         <div class="Box b">
-        <button v-on:click="nextCategory()">{{uiLabels.next}}</button><button v-on:click="previousCategory()">{{uiLabels.previous}}</button>
+        <button id="NextButton" v-on:click="nextCategory()">{{uiLabels.next}}</button><button id="PreviousButton" v-on:click="previousCategory()">{{uiLabels.previous}}</button>
         </div>
       <div class="Box c">
     <h1>{{ uiLabels.order }}</h1>
@@ -129,7 +129,38 @@ export default {
 #header h1{
   text-align: center;
 }
+#NextButton {
+background-color: #4CAF50; /* Green */
+border: none;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;
+}
+#NextButton:hover{
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+cursor:pointer;
+}
 
+#PreviousButton {
+background-color: #f44336; /* Red */
+border: none;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;
+}
+
+#PreviousButton:hover{
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+cursor:pointer;
+}
 .wrapper{
 display:grid;
 grid-template-columns: 66vw 30vw;
