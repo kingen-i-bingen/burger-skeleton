@@ -24,5 +24,6 @@
   "choose" : "Choose",
   "arrayOfLabels" : ["Patty", "Toppings", "Sauce", "Bread", "Sides","Drink"],
   "orderSummary" : "Go to order summary",
-  "myOrder" : "My order"
+  "myOrder" : "My order",
+  "newBurger" : "Make another burger"
 }

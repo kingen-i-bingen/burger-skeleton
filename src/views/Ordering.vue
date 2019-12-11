@@ -66,6 +66,7 @@
         {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice*chosen.count}} :-<br>
         </div>
         <button id="placeOrderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+        <button id="newBurgerButton"> {{uiLabels.newBurger}} </button>
         <br>
         {{ price }} kr
       </div>
@@ -125,7 +126,6 @@ export default {
           count: ingredientTuples.find(o => o.name === name).count
                           };
                         });
-                console.log(difIngredients);
                 return difIngredients;
           },
     arrayOfLabels: function() {
@@ -407,7 +407,7 @@ min-height: 40vw;
 background-color: #006400; /* Green */
 border: none;
 color: white;
-padding: 6vh 13vh;
+padding: 6vh 10vh;
 text-align: center;
 text-decoration: none;
 display: inline-block;
@@ -416,7 +416,7 @@ font-weight: bold;
 border-radius: 8px;
 position: fixed;
 top: 81vh;
-right: 3vw;
+right: 1.5vw;
 opacity: 0.9;
 }
 #placeOrderButton:hover{
@@ -451,5 +451,30 @@ transform:scale(1.1);
 #placeOrderButton:hover span:after {
   opacity: 1;
   right: 0;
+}
+#newBurgerButton {
+background-color: #6699FF; /* Green */
+border: none;
+color: white;
+max-width: 12vw;
+padding: 6vh 4vh;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+border-radius: 8px;
+position: fixed;
+top: 63vh;
+right: 5vw;
+opacity: 0.9;
+}
+#placeOrderButton:hover{
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+cursor:pointer;
+transform:scale(1.1);
+}
+#placeOrderButton:active {
+  box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
+  transform:scale(1.05);
 }
 </style>
