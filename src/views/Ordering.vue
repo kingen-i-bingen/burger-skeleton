@@ -4,7 +4,8 @@
     <header id="header">
         <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
         <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
-        <h1>{{ uiLabels.headline }}</h1>
+        <h1 v-show="category !== 7">{{ uiLabels.headline }}</h1>
+        <h1 v-show="category === 7">{{ uiLabels.myOrder }}</h1>
     </header>
     <div class="wrapper" v-show="category !== 7">
       <h1 id="category"> {{uiLabels.choose}} {{ arrayOfLabels }}</h1>
@@ -31,9 +32,9 @@
           </Ingredient>
         </div>
         <div class="Box b">
-          <button id="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1">{{uiLabels.previous}}</button>
+          <button class="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1">{{uiLabels.previous}}</button>
           <button class="NextButton" v-on:click="nextCategory()" v-show="category != 6"><span>{{uiLabels.next}}</span></button>
-          <button class="NextButton" v-on:click="nextCategory()" v-show="category === 6"> Gå till ordersummering</button>
+          <button class="NextButton" v-on:click="nextCategory()" v-show="category === 6"> <span>{{uiLabels.orderSummary}}</span></button>
         </div>
       <div class="Box c">
     <h1>{{ uiLabels.order }}</h1>
@@ -43,7 +44,6 @@
     </div>
     <br>
     {{ price }} kr
-    <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
     <h1>{{ uiLabels.ordersInQueue }}</h1>
       <div>
         <OrderItem
@@ -57,6 +57,19 @@
         </OrderItem>
       </div>
     </div>
+  </div>
+  <div id="orderScreen" v-show="category === 7">
+      <button class="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1">{{uiLabels.previous}}</button>
+      <div id="orderMenu">
+        <h1>{{ uiLabels.order }}</h1>
+        <div v-for="chosen in countAllIngredients" :key="countAllIngredients.indexOf(chosen)">
+        {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice*chosen.count}} :-<br>
+        </div>
+        <button id="placeOrderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+        <button id="newBurgerButton"> {{uiLabels.newBurger}} </button>
+        <br>
+        {{ price }} kr
+      </div>
   </div>
 </div>
 </body>
@@ -113,7 +126,6 @@ export default {
           count: ingredientTuples.find(o => o.name === name).count
                           };
                         });
-                console.log(difIngredients);
                 return difIngredients;
           },
     arrayOfLabels: function() {
@@ -218,11 +230,13 @@ h1{
 background-color: #4CAF50; /* Green */
 border: none;
 color: white;
-padding: 15px 32px;
+padding: 2vh 2vh;
+height: 7vh;
+width: 12vw;
 text-align: center;
 text-decoration: none;
 display: inline-block;
-font-size: 16px;
+font-size: 18px;
 border-radius: 8px;
 position: fixed;
 top: 90vh;
@@ -263,31 +277,33 @@ transform:scale(1.1);
   right: 0;
 }
 
-#PreviousButton {
+.PreviousButton {
 background-color: #f44336; /* Red */
 border: none;
 color: white;
-padding: 15px 32px;
+padding: 2vh 2vh;
+height: 7vh;
+width: 12vw;
 text-align: center;
 text-decoration: none;
 display: inline-block;
-font-size: 16px;
+font-size: 18px;
 border-radius: 8px;
 position: fixed;
 top: 90vh;
 opacity: 0.9;
 }
 
-#PreviousButton:hover{
+.PreviousButton:hover{
 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 cursor:pointer;
 transform:scale(1.1);
 }
-#PreviousButton:active {
+.PreviousButton:active {
   box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
   transform:scale(1.05);
 }
-#PreviousButton:disabled{
+.PreviousButton:disabled{
   opacity: 50%;
   pointer-events: none;
 }
@@ -376,5 +392,96 @@ grid-gap: 2em;
   color: white;
   border-radius: 1em;
   text-align: center;
+}
+#orderScreen{
+  display:grid;
+  grid-template-columns: 23vw 48vw 24vw;
+}
+#orderMenu{
+padding: 1vw;
+grid-column: 2;
+border: 3px solid #ccd;
+border-radius: 1em;
+min-height: 40vw;
+}
+#orderMenu h1{
+  text-align: center;
+}
+#placeOrderButton {
+background-color: #006400; /* Green */
+border: none;
+color: white;
+padding: 2vh 2vh;
+height: 17vh;
+width: 17vw;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 20px;
+font-weight: bold;
+border-radius: 8px;
+position: fixed;
+top: 81vh;
+right: 1.5vw;
+opacity: 0.9;
+}
+#placeOrderButton:hover{
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+cursor:pointer;
+transform:scale(1.1);
+}
+#placeOrderButton:active {
+  box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
+  transform:scale(1.05);
+}
+#placeOrderButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#placeOrderButton span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#placeOrderButton:hover span {
+  padding-right: 25px;
+}
+
+#placeOrderButton:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+#newBurgerButton {
+background-color: #6699FF; /* Green */
+border: none;
+color: white;
+padding: 2vh 2vh;
+height: 13vh;
+width: 17vw;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 20px;
+border-radius: 8px;
+position: fixed;
+top: 63vh;
+right: 1.65vw;
+opacity: 0.9;
+}
+#newBurgerButton:hover{
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+cursor:pointer;
+transform:scale(1.1);
+}
+#newBurgerButton:active {
+  box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
+  transform:scale(1.05);
 }
 </style>
