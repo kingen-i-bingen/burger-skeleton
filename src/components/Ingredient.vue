@@ -1,10 +1,11 @@
 <template>
   <div class="ingredient">
-    <label>
+    <div id="orderButtons">
       {{item["ingredient_"+ lang]}} <br> {{item.selling_price}} kr {{checkIfOut(item.stock)}}<br>
-      <button v-on:click="removeCounter(item.stock)">-</button>       {{ counter }}    <button v-on:click="incrementCounter">+</button>
+      <button class="removeButton" v-on:click="removeCounter(item.stock)" :disabled="counter === 0">-</button>    {{ counter }}
+      <button class="addButton" v-on:click="incrementCounter">+</button>
       <!-- <button v-on:click="incrementCounter">{{ counter }}</button>  BORTAGEN-->
-    </label>
+    </div>
   </div>
 </template>
 <script>
@@ -49,4 +50,43 @@ export default {
 }
 </script>
 <style scoped>
+  button {
+    background-color: transparent;
+    border: black;
+    color: #BC0022;
+    padding: 0.5em 1em 0.55em 1em;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    font-size: 22px;
+    font-weight: bolder;
+    border-radius: 8px;
+  }
+
+  button:hover {
+    cursor: pointer;
+    transform:scale(1.05);
+    box-shadow:1px 1px 3px rgba(0,0,0,0.5);
+  }
+
+  button:active {
+    box-shadow: none;
+    transform: none;
+  }
+
+  .removeButton {
+    right: 0.6em;
+  }
+
+
+  .removeButton:disabled {
+    opacity: 30%;
+    pointer-events: none;
+  }
+
+  .addButton {
+    left: 0.6em;
+  }
+
+
 </style>

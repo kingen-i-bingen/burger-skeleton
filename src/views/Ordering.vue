@@ -28,7 +28,8 @@
           v-on:remove="removeFromOrder(item)"
           :item="item"
           :lang="lang"
-          :key="item.ingredient_id">
+          :key="item.ingredient_id"
+          v-bind:style=" chosenIngredients.includes(item) ? 'border: 2px solid green;' : 'border: 2px solid #ccd;' ">
           </Ingredient>
         </div>
         <div class="Box b">
@@ -358,6 +359,7 @@ grid-gap: 2em;
   grid-row: 3;
   margin-bottom: 15vh;
   padding-left: 15vw;
+  padding-right: 10vw;
 }
 .b{
   grid-column: 1;
@@ -387,9 +389,11 @@ grid-gap: 2em;
 }
 .ingredient {
   border: 1px solid #ccd;
-  padding: 1em;
-  background-image: url('~@/assets/exampleImage.jpg');
-  color: white;
+  padding: 1em 0em 1em 0em;
+  /*background-image: url('~@/assets/exampleImage.jpg');*/
+  background-color: #D5DCD1;
+  color: black;
+  font-weight: bold;
   border-radius: 1em;
   text-align: center;
 }
