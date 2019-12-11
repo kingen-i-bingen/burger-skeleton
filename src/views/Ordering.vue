@@ -230,11 +230,13 @@ h1{
 background-color: #4CAF50; /* Green */
 border: none;
 color: white;
-padding: 15px 32px;
+padding: 2vh 2vh;
+height: 7vh;
+width: 12vw;
 text-align: center;
 text-decoration: none;
 display: inline-block;
-font-size: 16px;
+font-size: 18px;
 border-radius: 8px;
 position: fixed;
 top: 90vh;
@@ -279,11 +281,13 @@ transform:scale(1.1);
 background-color: #f44336; /* Red */
 border: none;
 color: white;
-padding: 15px 32px;
+padding: 2vh 2vh;
+height: 7vh;
+width: 12vw;
 text-align: center;
 text-decoration: none;
 display: inline-block;
-font-size: 16px;
+font-size: 18px;
 border-radius: 8px;
 position: fixed;
 top: 90vh;
@@ -407,7 +411,9 @@ min-height: 40vw;
 background-color: #006400; /* Green */
 border: none;
 color: white;
-padding: 6vh 10vh;
+padding: 2vh 2vh;
+height: 17vh;
+width: 17vw;
 text-align: center;
 text-decoration: none;
 display: inline-block;
@@ -456,24 +462,25 @@ transform:scale(1.1);
 background-color: #6699FF; /* Green */
 border: none;
 color: white;
-max-width: 12vw;
-padding: 6vh 4vh;
+padding: 2vh 2vh;
+height: 13vh;
+width: 17vw;
 text-align: center;
 text-decoration: none;
 display: inline-block;
-font-size: 16px;
+font-size: 20px;
 border-radius: 8px;
 position: fixed;
 top: 63vh;
-right: 5vw;
+right: 1.65vw;
 opacity: 0.9;
 }
-#placeOrderButton:hover{
+#newBurgerButton:hover{
 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 cursor:pointer;
 transform:scale(1.1);
 }
-#placeOrderButton:active {
+#newBurgerButton:active {
   box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
   transform:scale(1.05);
 }
