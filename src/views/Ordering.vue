@@ -32,7 +32,7 @@
         </div>
         <div class="Box b">
           <button id="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1">{{uiLabels.previous}}</button>
-          <button class="NextButton" v-on:click="nextCategory()" v-show="category != 6">{{uiLabels.next}}</button>
+          <button class="NextButton" v-on:click="nextCategory()" v-show="category != 6"><span>{{uiLabels.next}}</span></button>
           <button class="NextButton" v-on:click="nextCategory()" v-show="category === 6"> Gå till ordersummering</button>
         </div>
       <div class="Box c">
@@ -238,6 +238,30 @@ transform:scale(1.1);
   box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
   transform:scale(1.05);
 }
+.NextButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.NextButton span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.NextButton:hover span {
+  padding-right: 25px;
+}
+
+.NextButton:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 
 #PreviousButton {
 background-color: #f44336; /* Red */
@@ -279,6 +303,7 @@ transform:scale(1.1);
   padding: 14px 16px;
   transition: 0.3s;
   background-color: #ddd;
+  width: 8vw;
 
 }
 
@@ -292,6 +317,7 @@ transform:scale(1.1);
 .active {
   background-color: inherit;
   border-bottom: none;
+  pointer-events: none;
 
 }
 
@@ -304,6 +330,7 @@ grid-gap: 2em;
 .tabs{
   grid-column: 1;
   grid-row: 2;
+  padding-left: 8vw;
 
 }
 .a{
@@ -314,6 +341,7 @@ grid-gap: 2em;
   overflow-y:auto;
   grid-row: 3;
   margin-bottom: 15vh;
+  padding-left: 15vw;
 }
 .b{
   grid-column: 1;
@@ -346,7 +374,7 @@ grid-gap: 2em;
   padding: 1em;
   background-image: url('~@/assets/exampleImage.jpg');
   color: white;
-  border-radius: 2em;
+  border-radius: 1em;
   text-align: center;
 }
 </style>
