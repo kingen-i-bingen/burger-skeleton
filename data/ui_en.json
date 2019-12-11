@@ -22,5 +22,7 @@
   "next" : "Next Category",
   "previous" : "Previous Category",
   "choose" : "Choose",
-  "arrayOfLabels" : ["Patty", "Toppings", "Sauce", "Bread", "Sides","Drink"]
+  "arrayOfLabels" : ["Patty", "Toppings", "Sauce", "Bread", "Sides","Drink"],
+  "orderSummary" : "Go to order summary",
+  "myOrder" : "My order"
 }
