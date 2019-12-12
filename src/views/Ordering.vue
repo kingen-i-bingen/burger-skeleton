@@ -39,8 +39,12 @@
         </div>
       <div class="Box c">
     <h1>{{ uiLabels.order }}</h1>
+    <!-- <div v-for="(burger, key) in currentOrder.burgers" :key="key">
+   {{key}}:
+   <span v-for="(item, key2) in burger.ingredients" :key="key2">
+     {{ item['ingredient_' + lang] }}
+   </span> -->
     <div v-for="chosen in countAllIngredients" :key="countAllIngredients.indexOf(chosen)">
-    <!-- {{ chosenIngredients.map(item => item["ingredient_"+lang]).join("\n") }}, {{ price }} kr   {{chosen["ingredient_"+lang] }} -->
     {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice*chosen.count}} :-<br>
     </div>
     <br>
@@ -63,15 +67,20 @@
       <button class="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1">{{uiLabels.previous}}</button>
       <div id="orderMenu">
         <h1>{{ uiLabels.order }}</h1>
-        <div v-for="chosen in countAllIngredients" :key="countAllIngredients.indexOf(chosen)">
-        {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice*chosen.count}} :-<br>
-        </div>
-        <button id="placeOrderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
-        <button id="newBurgerButton"> {{uiLabels.newBurger}} </button>
+        <div v-for="burger in countAllIngredientsInAllBurgers" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
+        <h3>Burger {{burger.number}}</h3>
         <br>
-        {{ price }} kr
+            <div v-for="chosen in burger.burgerIngredients" :key="burger.burgerIngredients.indexOf(chosen)">
+            {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice*chosen.count}} :-<br>
+            </div>
+        <br>
+        Price: {{burger.burgerPrice}}
+        <br>
       </div>
   </div>
+  <button id="placeOrderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+  <button id="newBurgerButton"> {{uiLabels.newBurger}} </button>
+</div>
 </div>
 </body>
 </template>
@@ -102,7 +111,10 @@ export default {
       price: 0,
       orderNumber: "",
       category: 1,
-      activeTab: 'tab1'
+      activeTab: 'tab1',
+      currentOrder: {
+           burgers: []
+      }
     }
   },
   created: function () {
@@ -111,6 +123,31 @@ export default {
     }.bind(this));
   },
   computed: {
+    countAllIngredientsInAllBurgers: function() {
+      let burgerList = [];
+      for (let j = 0; j < this.currentOrder.burgers.length; j += 1) {
+          let ingredientTuples = [];
+          for (let i = 0; i < this.currentOrder.burgers[j].ingredients.length; i += 1) {
+            ingredientTuples[i] = {};
+            ingredientTuples[i].name = this.currentOrder.burgers[j].ingredients[i]['ingredient_' + this.lang];
+            ingredientTuples[i].itemPrice = this.currentOrder.burgers[j].ingredients[i]['selling_price'];
+            ingredientTuples[i].count = this.countNumberOfIngredientsAll(this.currentOrder.burgers[j].ingredients[i].ingredient_id,j);
+          }
+          var difIngredients = Array.from(new Set(ingredientTuples.map(o => o.name)))
+          .map(name=> {
+            return{
+              name: name,
+              itemPrice: ingredientTuples.find(o => o.name === name).itemPrice,
+              count: ingredientTuples.find(o => o.name === name).count
+                              };
+                            });
+            burgerList[j] = {}
+            burgerList[j].number = j+1;
+            burgerList[j].burgerIngredients = difIngredients;
+            burgerList[j].burgerPrice = this.currentOrder.burgers[j].price;
+            }
+            return burgerList
+          },
     countAllIngredients: function() {
       let ingredientTuples = []
       for (let i = 0; i < this.chosenIngredients.length; i += 1) {
@@ -148,10 +185,34 @@ export default {
           }
       return counter;
     },
+    countNumberOfIngredientsAll: function (id, burgerId) {
+      let counter = 0;
+      for (let item in this.currentOrder.burgers[burgerId].ingredients) {
+              if (this.currentOrder.burgers[burgerId].ingredients[item].ingredient_id === id) {
+                counter +=1;
+              }
+          }
+      return counter;
+    },
     nextCategory: function (){
-      if (this.category<7){
+      if (this.category<6){
         this.category += 1;
         this.activeTab= "tab"+this.category;
+      }
+      else{
+        this.category += 1;
+        this.activeTab= "tab"+this.category;
+        // Add the burger to an order array
+        this.currentOrder.burgers.push({
+        ingredients: this.chosenIngredients.splice(0),
+        price: this.price
+      });
+      //set all counters to 0. Notice the use of $refs
+      for (let i = 0; i < this.$refs.ingredient.length; i += 1) {
+      this.$refs.ingredient[i].resetCounter();
+      }
+      this.chosenIngredients = [];
+      this.price = 0;
       }
     },
     previousCategory: function (){
@@ -183,6 +244,9 @@ export default {
       }
       this.price = 0;
       this.chosenIngredients = [];
+    },
+    addAnotherBurger: function(){
+
     }
   }
 }
