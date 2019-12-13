@@ -2,7 +2,7 @@
   <div class="ingredient">
     <div id="orderButtons">
       {{item["ingredient_"+ lang]}} <br> {{item.selling_price}} kr {{checkIfOut(item.stock)}}<br>
-      <button class="removeButton" v-on:click="removeCounter(item.stock)" :disabled="counter === 0">-</button>    {{ counter }}
+      <button class="removeButton" v-on:click="removeCounter" :disabled="counter === 0">-</button>    {{ counter }}
       <button class="addButton" v-on:click="incrementCounter">+</button>
       <!-- <button v-on:click="incrementCounter">{{ counter }}</button>  BORTAGEN-->
     </div>
@@ -29,11 +29,14 @@ export default {
           return "";
         }
     },
-    incrementCounter: function (stock) {
+    incrementCounter: function () {
         this.counter += 1;
         // sending 'increment' message to parent component or view so that it
         // can catch it with v-on:increment in the component declaration
         this.$emit('increment');
+    },
+    restoreCounter: function () {
+        this.counter += 1;
     },
       removeCounter:function () {
         if(this.counter > 0){
