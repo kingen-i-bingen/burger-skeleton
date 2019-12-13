@@ -11,12 +11,13 @@
       <h1 id="category"> {{uiLabels.choose}} {{ arrayOfLabels }}</h1>
 
       <div class="tabs">
-        <button class="tablinks" v-on:click="changeCategory(1, 'tab1')" :class="{active: activeTab === 'tab1' }">{{ uiLabels.arrayOfLabels[0]}}</button>
-        <button class="tablinks" v-on:click="changeCategory(2, 'tab2')" :class="{active: activeTab === 'tab2' }">{{ uiLabels.arrayOfLabels[1] }}</button>
-        <button class="tablinks" v-on:click="changeCategory(3, 'tab3')" :class="{active: activeTab === 'tab3' }">{{ uiLabels.arrayOfLabels[2] }}</button>
-        <button class="tablinks" v-on:click="changeCategory(4, 'tab4')" :class="{active: activeTab === 'tab4' }">{{ uiLabels.arrayOfLabels[3] }}</button>
-        <button class="tablinks" v-on:click="changeCategory(5, 'tab5')" :class="{active: activeTab === 'tab5' }">{{ uiLabels.arrayOfLabels[4] }}</button>
-        <button class="tablinks" v-on:click="changeCategory(6, 'tab6')" :class="{active: activeTab === 'tab6' }">{{ uiLabels.arrayOfLabels[5] }}</button>
+        <button class="tablinks" v-on:click="changeCategory(1, 'tab1')" :class="{active: activeTab === 'tab1' }"
+        v-bind:style=" checkCategory(1) ? 'border: 2px solid green; border-bottom: none; color: green' : 'color: black' ">{{ uiLabels.arrayOfLabels[0]}}</button>
+        <button class="tablinks" v-on:click="changeCategory(2, 'tab2')" :class="{active: activeTab === 'tab2' }" v-bind:style=" checkCategory(2) ? 'border: 2px solid green; border-bottom: none; color: green' : 'color: black' ">{{ uiLabels.arrayOfLabels[1] }}</button>
+        <button class="tablinks" v-on:click="changeCategory(3, 'tab3')" :class="{active: activeTab === 'tab3' }" v-bind:style=" checkCategory(3) ? 'border: 2px solid green; border-bottom: none; color: green' : 'color: black' ">{{ uiLabels.arrayOfLabels[2] }}</button>
+        <button class="tablinks" v-on:click="changeCategory(4, 'tab4')" :class="{active: activeTab === 'tab4' }" v-bind:style=" checkCategory(4) ? 'border: 2px solid green; border-bottom: none; color: green' : 'color: black' ">{{ uiLabels.arrayOfLabels[3] }}</button>
+        <button class="tablinks" v-on:click="changeCategory(5, 'tab5')" :class="{active: activeTab === 'tab5' }" v-bind:style=" checkCategory(5) ? 'border: 2px solid green; border-bottom: none; color: green' : 'color: black' ">{{ uiLabels.arrayOfLabels[4] }}</button>
+        <button class="tablinks" v-on:click="changeCategory(6, 'tab6')" :class="{active: activeTab === 'tab6' }" v-bind:style=" checkCategory(6) ? 'border: 2px solid green; border-bottom: none; color: green' : 'color: black' ">{{ uiLabels.arrayOfLabels[5] }}</button>
       </div>
 
       <div class="Box a">
@@ -271,10 +272,23 @@ export default {
       this.chosenIngredients = [];
     },
     addAnotherBurger: function(){
+
       this.category = 1
       this.burgerNumber = this.currentOrder.burgers.length;
+    },
+
+    checkCategory: function(number) {
+      let categoryExist = false;
+      for (let item in this.chosenIngredients) {
+        console.log(this.chosenIngredients[item].category);
+        if (this.chosenIngredients[item].category===number){
+          categoryExist = true;
+        }
+      }
+      return categoryExist;
     }
   }
+
 }
 </script>
 <style scoped>
@@ -411,6 +425,7 @@ transform:scale(1.1);
   transition: 0.3s;
   background-color: #ddd;
   width: 8vw;
+
 
 }
 
