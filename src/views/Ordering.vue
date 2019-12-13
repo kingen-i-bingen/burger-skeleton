@@ -68,7 +68,7 @@
       <div id="orderMenu">
         <h1>{{ uiLabels.order }}</h1>
         <div v-for="burger in countAllIngredientsInAllBurgers" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
-        <h3>Burger {{burger.number}}</h3>
+        <h3>Burger {{burger.number+1}}</h3>
         <br>
             <div v-for="chosen in burger.burgerIngredients" :key="burger.burgerIngredients.indexOf(chosen)">
             {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice*chosen.count}} :-<br>
@@ -79,7 +79,7 @@
       </div>
   </div>
   <button id="placeOrderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
-  <button id="newBurgerButton"> {{uiLabels.newBurger}} </button>
+  <button id="newBurgerButton" v-on:click="addAnotherBurger()"> {{uiLabels.newBurger}} </button>
 </div>
 </div>
 </body>
@@ -114,7 +114,8 @@ export default {
       activeTab: 'tab1',
       currentOrder: {
            burgers: []
-      }
+      },
+      burgerNumber: 0
     }
   },
   created: function () {
@@ -127,6 +128,8 @@ export default {
       let burgerList = [];
       for (let j = 0; j < this.currentOrder.burgers.length; j += 1) {
           let ingredientTuples = [];
+          console.log("burger1 ingredients in count")
+          console.log(this.currentOrder.burgers[j].ingredients);
           for (let i = 0; i < this.currentOrder.burgers[j].ingredients.length; i += 1) {
             ingredientTuples[i] = {};
             ingredientTuples[i].name = this.currentOrder.burgers[j].ingredients[i]['ingredient_' + this.lang];
@@ -142,7 +145,7 @@ export default {
                               };
                             });
             burgerList[j] = {}
-            burgerList[j].number = j+1;
+            burgerList[j].number = j;
             burgerList[j].burgerIngredients = difIngredients;
             burgerList[j].burgerPrice = this.currentOrder.burgers[j].price;
             }
@@ -203,10 +206,23 @@ export default {
         this.category += 1;
         this.activeTab= "tab"+this.category;
         // Add the burger to an order array
-        this.currentOrder.burgers.push({
-        ingredients: this.chosenIngredients.splice(0),
-        price: this.price
-      });
+        if (this.burgerNumber==this.currentOrder.burgers.length)
+        {
+          this.currentOrder.burgers.push({
+          ingredients: this.chosenIngredients,
+          price: this.price
+          });
+        }
+        else{
+          console.log("VAD HÄNDER")
+          let order = {
+            ingredients: this.chosenIngredients,
+            price: this.price
+          };
+          this.currentOrder.burgers[this.burgerNumber]=order;
+          console.log("burger1 ingredients in next")
+          console.log(this.currentOrder.burgers[this.burgerNumber].ingredients);
+        }
       //set all counters to 0. Notice the use of $refs
       for (let i = 0; i < this.$refs.ingredient.length; i += 1) {
       this.$refs.ingredient[i].resetCounter();
@@ -216,7 +232,16 @@ export default {
       }
     },
     previousCategory: function (){
-      if (this.category>1){
+      if (this.category==7){
+        this.category -= 1;
+        this.activeTab= "tab"+this.category;
+        this.chosenIngredients = this.currentOrder.burgers[this.burgerNumber].ingredients;
+        this.price = this.currentOrder.burgers[this.burgerNumber].price;
+        for (let i = 0; i < this.chosenIngredients.length; i += 1) {
+        this.$refs.ingredient[this.chosenIngredients[i].ingredient_id-1].restoreCounter();
+        }
+      }
+      else{
         this.category -= 1;
         this.activeTab= "tab"+this.category;
       }
@@ -246,7 +271,8 @@ export default {
       this.chosenIngredients = [];
     },
     addAnotherBurger: function(){
-
+      this.category = 1
+      this.burgerNumber = this.currentOrder.burgers.length;
     }
   }
 }
