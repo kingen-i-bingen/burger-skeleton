@@ -6,13 +6,14 @@
      <div v-for="countIng in countAllIngredients"
            v-if="countIng.count>0"
            :key="countAllIngredients.indexOf(countIng)">
-         {{countIng.name}}: {{countIng.count}}
+           {{countIng.name}}: {{countIng.count}}
           <button v-on:click="setOneDone(countIng)">One done </button>
    </div>
   </div>
 
 <div id="ordersQueue">
   <h1>{{ uiLabels.ordersInQueue }}</h1>
+
     <OrderItemToPrepare
       v-for="(order, key) in orders"
       v-if="order.status !== 'done'"
@@ -37,6 +38,7 @@
       :lang="lang"
       :ui-labels="uiLabels"
       :key="key">
+
     </OrderItem>
   </div>
 
@@ -117,12 +119,22 @@ export default {
 
 
 
-	#orders {
+	#orders {     /* wrapper*/
     font-size:16pt;
     display:grid;
     grid-gap:1px;
-    grid-template-columns:33,33333333333vw 33,333333333333vw 33,33333333333vw;
+    grid-template-columns:33vw 33vw 33vw;
     background-color: lightblue;
+
+
+    height: 96vh;
+
+    width: 99vw;
+    /* padding-left: 0.5vw; */
+
+
+
+
 
   }
 
@@ -130,43 +142,61 @@ export default {
 #ordersQueue{
 grid-column:1;
 grid-row: 1;
-border: 2px solid #ff9900;
-margin:5px;
-padding: 10px;
-
-
+border: 5px solid #ff9900;
+overflow: auto;
+margin:3px;
 
   }
+
+#ordersQueue h1{
+  text-transform: uppercase;
+  font-size: 1.4em;
+
+  /* border:solid;
+  border-radius:3vw; */
+  text-align: center;
+
+}
 
   #summaryOrder {
 grid-column: 2;
 grid-row: 1;
-border: 2px solid #ff9900;
-margin:5px;
-padding: 10px;
-
-
-
+border: 5px solid #ff9900;
+overflow: auto;
+margin:3px;
   }
 
+#summaryOrder h1 {
+  text-transform: uppercase;
+  font-size: 1.4em;
+  /* border:solid;
+  border-radius:10vw; */
+  text-align: center;
+
+
+}
 
   #finishedOrder{
 grid-column:3;
 grid-row: 1;
-border: 2px solid #ff9900;
-margin:5px;
-padding: 10px;
-
-
+border: 5px solid #ff9900;
+overflow: auto;
+margin:3px;
   }
 
+#finishedOrder h1{
+  text-transform: uppercase;
+  font-size: 1.4em;
+  text-align: center;
+
+  /* border-bottom: solid 1px black; */
+  /* border:solid;
+  border-radius:3vw; */
 
 
-  h1 {
-    text-transform: uppercase;
-    font-size: 1.4em;
-    text-align: center;
-    border-bottom: solid 1px black;
+}
 
-  }
+
+
+
 </style>

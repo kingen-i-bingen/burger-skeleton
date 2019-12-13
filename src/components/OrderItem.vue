@@ -1,9 +1,9 @@
 <template>
 	<div>
 			<p>
-		   <li>
-       	Order {{orderId}},{{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
-	     </li>
+		   <ul>
+       	 {{orderId}}{{order.type}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
+	     </ul>
 	   </p>
 	</div>
 </template>
