@@ -117,7 +117,10 @@ export default {
       category: 1,
       activeTab: 'tab1',
       currentOrder: {
-           burgers: []
+           burgers: [{
+           ingredients: [],
+           price: 0
+           }]
       },
       burgerNumber: 0
     }
@@ -210,23 +213,21 @@ export default {
         this.category += 1;
         this.activeTab= "tab"+this.category;
         // Add the burger to an order array
-        if (this.burgerNumber==this.currentOrder.burgers.length)
-        {
-          this.currentOrder.burgers.push({
-          ingredients: this.chosenIngredients,
-          price: this.price
-          });
-        }
-        else{
-          console.log("VAD HÄNDER")
-          let order = {
+        // if (this.burgerNumber==this.currentOrder.burgers.length)
+        // {
+        //   this.currentOrder.burgers.push({
+        //   ingredients: this.chosenIngredients,
+        //   price: this.price
+        //   });
+        // }
+        let order = {
             ingredients: this.chosenIngredients,
             price: this.price
           };
-          this.currentOrder.burgers[this.burgerNumber]=order;
-          console.log("burger1 ingredients in next")
-          console.log(this.currentOrder.burgers[this.burgerNumber].ingredients);
-        }
+          console.log(this.burgerNumber)
+          this.currentOrder.burgers.splice(this.burgerNumber,1,order)
+          // console.log("burger1 ingredients in next")
+          // console.log(this.currentOrder.burgers[this.burgerNumber].ingredients);
       //set all counters to 0. Notice the use of $refs
       for (let i = 0; i < this.$refs.ingredient.length; i += 1) {
       this.$refs.ingredient[i].resetCounter();
@@ -278,12 +279,15 @@ export default {
 
       this.category = 1
       this.burgerNumber = this.currentOrder.burgers.length;
+      this.currentOrder.burgers.push({
+        ingredients: [],
+        price: 0
+      });
     },
 
     checkCategory: function(number) {
       let categoryExist = false;
       for (let item in this.chosenIngredients) {
-        console.log(this.chosenIngredients[item].category);
         if (this.chosenIngredients[item].category===number){
           categoryExist = true;
         }
