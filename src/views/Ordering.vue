@@ -3,7 +3,10 @@
   <div id="ordering">
     <header id="header">
         <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
-        <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+        <button id="langButton" v-on:click="switchLang()">
+          <img id="langPic" v-if="flag_en" src="@/assets/englishFlag.webp" width="30px" height="20px">
+          <img id="langPic" v-if="flag_sv" src="@/assets/swedishFlag.png" width="30px" height="20px">
+        </button>
         <h1 v-show="category !== 7">{{ uiLabels.headline }}</h1>
         <h1 v-show="category === 7">{{ uiLabels.myOrder }}</h1>
     </header>
@@ -607,5 +610,17 @@ transform:scale(1.1);
 #newBurgerButton:active {
   box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
   transform:scale(1.05);
+}
+#langButton{
+  position: absolute;
+  top:30px;
+  right:50px;
+  padding:0;
+  margin:0;
+  background: transparent;
+  border: transparent;
+}
+#langPic{
+  height: 100%;
 }
 </style>
