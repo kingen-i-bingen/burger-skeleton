@@ -23,7 +23,7 @@
   "previous" : "Previous",
   "choose" : "Choose",
   "arrayOfLabels" : ["Patty", "Toppings", "Sauce", "Bread", "Sides","Drink"],
-  "orderSummary" : "Go to order summary",
+  "orderSummary" : "Order summary",
   "myOrder" : "My order",
   "newBurger" : "Make another burger"
 }

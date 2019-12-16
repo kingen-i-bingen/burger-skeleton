@@ -23,7 +23,7 @@
   "previous" : "Tillbaka",
   "choose" : "Välj",
   "arrayOfLabels" : ["Protein", "Pålägg", "Dressing", "Bröd", "Tillbehör","Dryck"],
-  "orderSummary" : "Gå till ordersummering",
+  "orderSummary" : "Ordersummering",
   "myOrder" : "Min order",
   "newBurger" : "Gör en till burgare"
 }

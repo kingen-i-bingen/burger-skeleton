@@ -34,9 +34,9 @@
           </Ingredient>
         </div>
         <div class="Box b">
-          <button class="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1">{{uiLabels.previous}}</button>
+          <button class="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1"><span>{{uiLabels.previous}}</span></button>
           <button class="NextButton" v-on:click="nextCategory()" v-show="category != 6"><span>{{uiLabels.next}}</span></button>
-          <button class="NextButton" v-on:click="nextCategory()" v-show="category === 6"> <span>{{uiLabels.orderSummary}}</span></button>
+          <button class="OrderSummary" v-on:click="nextCategory()" v-show="category === 6"> <span>{{uiLabels.orderSummary}}</span></button>
         </div>
       <div class="Box c">
     <h1>{{ uiLabels.order }}</h1>
@@ -331,33 +331,49 @@ h1{
 #category{
   text-align: center;
 }
+.b  button {
+  border: none;
+  color: white;
+  padding: 2vh 2vh;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  border-radius: 8px;
+  position: fixed;
+  top: 90vh;
+}
+
 .NextButton {
 background-color: #4CAF50; /* Green */
-border: none;
-color: white;
-padding: 2vh 2vh;
 height: 7vh;
 width: 12vw;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 18px;
-border-radius: 8px;
-position: fixed;
-top: 90vh;
 right: 29vw;
-opacity: 0.9;
 }
-.NextButton:hover{
-box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-cursor:pointer;
-transform:scale(1.1);
+
+.PreviousButton {
+background-color: #f44336; /* Red */
+height: 7vh;
+width: 12vw;
 }
-.NextButton:active {
+
+.OrderSummary {
+background-color: #4CAF50; /* Green */
+height: 7vh;
+width: 12vw;
+right: 29vw;
+}
+
+.b button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  cursor:pointer;
+  transform:scale(1.1);
+}
+.b button:active {
   box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
   transform:scale(1.05);
 }
-.NextButton span {
+.b button span {
   cursor: pointer;
   display: inline-block;
   position: relative;
@@ -382,32 +398,31 @@ transform:scale(1.1);
   right: 0;
 }
 
-.PreviousButton {
-background-color: #f44336; /* Red */
-border: none;
-color: white;
-padding: 2vh 2vh;
-height: 7vh;
-width: 12vw;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 18px;
-border-radius: 8px;
-position: fixed;
-top: 90vh;
-opacity: 0.9;
+.PreviousButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
 }
 
-.PreviousButton:hover{
-box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-cursor:pointer;
-transform:scale(1.1);
+.PreviousButton span:after {
+  content: '\00ab';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -20px;
+  transition: 0.5s;
 }
-.PreviousButton:active {
-  box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
-  transform:scale(1.05);
+
+.PreviousButton:hover span {
+  padding-left: 25px;
 }
+
+.PreviousButton:hover span:after {
+  opacity: 1;
+  left: 0;
+}
+
 .PreviousButton:disabled{
   opacity: 50%;
   pointer-events: none;
