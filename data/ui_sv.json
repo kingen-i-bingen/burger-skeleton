@@ -25,6 +25,8 @@
   "arrayOfLabels" : ["Protein", "Pålägg", "Dressing", "Bröd", "Tillbehör","Dryck"],
   "orderSummary" : "Ordersummering",
   "myOrder" : "Min order",
+  "menu" : "Meny",
+  "number": "nr.",
   "newBurger" : "Gör en till burgare",
   "buildBurger" : "Bygg din burgare",
   "welcome" : "Välkommen till Craft burger"
