@@ -267,6 +267,8 @@ export default {
     addAnotherBurger: function(){
       this.category = 1
       this.burgerNumber = this.currentOrder.burgers.length;
+      this.activeTab ="tab1";
+
     },
 
     checkCategory: function(number) {
