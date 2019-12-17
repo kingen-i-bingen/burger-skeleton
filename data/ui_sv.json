@@ -28,7 +28,7 @@
   "myOrder" : "Min order",
   "menu" : "Meny",
   "number": "nr.",
-  "newBurger" : "Gör en till burgare",
+  "newMenu" : "Gör en till meny",
   "buildBurger" : "Bygg din burgare",
   "welcome" : "Välkommen till Craft burger"
 }

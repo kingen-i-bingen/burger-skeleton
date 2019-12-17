@@ -79,7 +79,7 @@
       </div>
   </div>
   <button id="placeOrderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
-  <button id="newBurgerButton" v-on:click="addAnotherBurger()"> {{uiLabels.newBurger}} </button>
+  <button id="newBurgerButton" v-on:click="addAnotherBurger()"> {{uiLabels.newMenu}} </button>
 </div>
 </div>
 </body>
