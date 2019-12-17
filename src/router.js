@@ -1,13 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Startpage from './views/Startpage.vue'
 import Ordering from './views/Ordering.vue'
 
 Vue.use(Router)
 
 let router = new Router({
   routes: [
+
     {
-      path: '/',
+    path: '/',
+    meta: {
+      title: 'Kraft Burgers',
+    },
+    name: 'startpage',
+    component: Startpage
+    },
+    {
+      path: '/ordering',
       meta: {
         title: 'Kraft Burgers',
       },

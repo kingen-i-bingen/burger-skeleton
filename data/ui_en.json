@@ -25,5 +25,8 @@
   "arrayOfLabels" : ["Patty", "Toppings", "Sauce", "Bread", "Sides","Drink"],
   "orderSummary" : "Order summary",
   "myOrder" : "My order",
-  "newBurger" : "Make another burger"
+  "newBurger" : "Make another burger",
+  "buildBurger" : "Build your burger",
+  "welcome" : "Välkommen till Craft burger"
+
 }
