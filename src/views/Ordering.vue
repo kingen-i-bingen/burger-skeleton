@@ -41,7 +41,7 @@
           <button class="NextButton" v-on:click="nextCategory()" :disabled="category===6"><span>{{uiLabels.next}}</span></button>
         </div>
       <div class="Box c">
-    <h1>{{uiLabels.menu}} {{uiLabels.number}} {{burgerNumber+1}}</h1>
+    <h1>{{ uiLabels.order }}</h1>
     <!-- <div v-for="(burger, key) in currentOrder.burgers" :key="key">
    {{key}}:
    <span v-for="(item, key2) in burger.ingredients" :key="key2">
@@ -52,8 +52,6 @@
     </div>
     <br>
     {{ price }} kr
-
-      </div>
     </div>
 
         <div class="Box d">
