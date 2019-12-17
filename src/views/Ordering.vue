@@ -305,15 +305,7 @@ h1{
 
 }
 
-#header button{
-  background-color: #E8E5E2; //Villes secial light grey
-  border-radius:8px;
-  border:none;
-  padding: 10px 25px;
-  text-align: center;
-  color: black;
 
-}
 
 #header button:hover{
   cursor:pointer;
