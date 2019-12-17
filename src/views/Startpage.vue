@@ -2,16 +2,12 @@
   <div class="startpage">
     <header id="header">
       <button id="langButton" v-on:click="switchLang()">
-        <img id="langPic" v-if="flag_en" src="@/assets/englishFlag.webp" width="30px" height="20px">
-        <img id="langPic" v-if="flag_sv" src="@/assets/swedishFlag.png" width="30px" height="20px">
+        <img class="langPic" v-if="flag_en" src="@/assets/englishFlag.webp" width="30px" height="20px">
+        <img class="langPic" v-if="flag_sv" src="@/assets/swedishFlag.png" width="30px" height="20px">
       </button>
     <h1 id="startHead"> {{uiLabels.welcome}} </h1>
   </header>
-  <div class="wrapper">
-    <div class="Box a">
     <button class="BuildButton" v-on:click="previousCategory()"> {{uiLabels.buildBurger}} </button>
-    </div>
-  </div>
 </div>
 
 </template>
@@ -46,23 +42,38 @@ export default {
 </script>
 <style>
 
+.startpage {
+font-family: helvetica;
+font-weight: lighter;
+}
+h1 {
+  font-size: 3em;
+}
+
+#startHead {
+  text-align: center;
+}
+
 .BuildButton{
   border: none;
   color: black;
-  padding: 2vh 2vh;
+  padding: 5vh 5vh;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 18px;
+  font-size: 35px;
   border-radius: 8px;
+  top: 45%;
+  left:37%;
   position: fixed;
-  top: 200;
 }
-.wrapper{
-display:grid;
+.BuildButton:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    cursor:pointer;
+    transform:scale(1.1);
 }
-.a {
-
+.langPic{
+  height: 100%;
 }
 
 </style>
