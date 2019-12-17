@@ -117,11 +117,8 @@ export default {
       category: 1,
       activeTab: 'tab1',
       currentOrder: {
-           burgers: [{
-           ingredients: [],
-           price: 0
-           }]
-      },
+           burgers: []
+         },
       burgerNumber: 0
     }
   },
@@ -135,8 +132,6 @@ export default {
       let burgerList = [];
       for (let j = 0; j < this.currentOrder.burgers.length; j += 1) {
           let ingredientTuples = [];
-          console.log("burger1 ingredients in count")
-          console.log(this.currentOrder.burgers[j].ingredients);
           for (let i = 0; i < this.currentOrder.burgers[j].ingredients.length; i += 1) {
             ingredientTuples[i] = {};
             ingredientTuples[i].name = this.currentOrder.burgers[j].ingredients[i]['ingredient_' + this.lang];
@@ -212,28 +207,27 @@ export default {
       else{
         this.category += 1;
         this.activeTab= "tab"+this.category;
-        // Add the burger to an order array
-        // if (this.burgerNumber==this.currentOrder.burgers.length)
-        // {
-        //   this.currentOrder.burgers.push({
-        //   ingredients: this.chosenIngredients,
-        //   price: this.price
-        //   });
-        // }
-        let order = {
-            ingredients: this.chosenIngredients,
-            price: this.price
-          };
-          console.log(this.burgerNumber)
-          this.currentOrder.burgers.splice(this.burgerNumber,1,order)
-          // console.log("burger1 ingredients in next")
-          // console.log(this.currentOrder.burgers[this.burgerNumber].ingredients);
-      //set all counters to 0. Notice the use of $refs
-      for (let i = 0; i < this.$refs.ingredient.length; i += 1) {
-      this.$refs.ingredient[i].resetCounter();
-      }
-      this.chosenIngredients = [];
-      this.price = 0;
+        //Add the burger to an order array
+        if (this.burgerNumber==this.currentOrder.burgers.length)
+        {
+          this.currentOrder.burgers.push({
+          ingredients: this.chosenIngredients,
+          price: this.price
+          });
+        }
+        else{
+          let order = {
+              ingredients: this.chosenIngredients,
+              price: this.price
+           };
+           this.currentOrder.burgers.splice(this.burgerNumber,1,order)
+        }
+         //set all counters to 0. Notice the use of $refs
+        for (let i = 0; i < this.$refs.ingredient.length; i += 1) {
+            this.$refs.ingredient[i].resetCounter();
+        }
+        this.chosenIngredients = [];
+        this.price = 0;
       }
     },
     previousCategory: function (){
@@ -243,7 +237,8 @@ export default {
         this.chosenIngredients = this.currentOrder.burgers[this.burgerNumber].ingredients;
         this.price = this.currentOrder.burgers[this.burgerNumber].price;
         for (let i = 0; i < this.chosenIngredients.length; i += 1) {
-        this.$refs.ingredient[this.chosenIngredients[i].ingredient_id-1].restoreCounter();
+          this.$refs.ingredient[this.chosenIngredients[i].ingredient_id-1].restoreCounter();
+          console.log(this.chosenIngredients[i].ingredient_id);
         }
       }
       else{
@@ -276,13 +271,8 @@ export default {
       this.chosenIngredients = [];
     },
     addAnotherBurger: function(){
-
       this.category = 1
       this.burgerNumber = this.currentOrder.burgers.length;
-      this.currentOrder.burgers.push({
-        ingredients: [],
-        price: 0
-      });
     },
 
     checkCategory: function(number) {

@@ -48,6 +48,7 @@ export default {
       },
     resetCounter: function () {
       this.counter = 0;
+      console.log(this.counter);
     }
   }
 }
