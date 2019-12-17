@@ -716,7 +716,7 @@ transform:scale(1.1);
 
 #changeBurgerButton{
   font-size: 16px;
-  background-color: light;
+  background-color: transparent;
   text-decoration: underline;
   border: none;
   margin-left: 0.5em;
@@ -730,8 +730,6 @@ transform:scale(1.1);
 
 #changePic{
   background:transparent;
-
-
 }
 
 #langButton{
