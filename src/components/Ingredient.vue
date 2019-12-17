@@ -1,10 +1,18 @@
 <template>
   <div class="ingredient">
     <div id="orderButtons">
-      {{item["ingredient_"+ lang]}} <br> {{item.selling_price}} kr {{checkIfOut(item.stock)}}<br>
+      {{item["ingredient_"+ lang]}}
+      <!-- <img v-show="item.gluten_free===1">
+      <img v-show="item.vegan===1"><br>  -->
+      <br>
+      {{item.selling_price}} kr {{checkIfOut(item.stock)}}
+      <br>
       <button class="removeButton" v-on:click="removeCounter" :disabled="counter === 0">-</button>    {{ counter }}
       <button class="addButton" v-on:click="incrementCounter">+</button>
-      <!-- <button v-on:click="incrementCounter">{{ counter }}</button>  BORTAGEN-->
+      <br>
+      <img src="@/assets/milk_free.png" v-show="item.milk_free===1" height="20em" width="20em">
+      <img src="@/assets/gluten_free.png" v-show="item.gluten_free===1" height="20em" width="20em">
+      <img src="@/assets/vegan1.png" v-show="item.vegan===1" height="20em" width="20em">
     </div>
   </div>
 </template>
@@ -92,6 +100,4 @@ export default {
   .addButton {
     left: 0.6em;
   }
-
-
 </style>

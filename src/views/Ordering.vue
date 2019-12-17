@@ -77,7 +77,7 @@
             <div v-for="chosen in burger.burgerIngredients" :key="burger.burgerIngredients.indexOf(chosen)">
             {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice}}:-<br>
             </div>
-        <h4>Price: {{burger.burgerPrice}} kr</h4>
+        <h4>{{uiLabels.menuPrice}}: {{burger.burgerPrice}} kr</h4>
       </div>
       </div>
       <div id= "totalpris">
@@ -385,7 +385,7 @@ position: fixed;
     width: 15vw;
     position: relative;
     top: 3.5vh;
-    left: 8vw;
+    left: 5.3vw;
 
 }
 
