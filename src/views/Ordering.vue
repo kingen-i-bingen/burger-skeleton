@@ -66,7 +66,11 @@
       <div id="orderMenu">
         <div id= "orderBoxes">
         <div v-for="burger in countAllIngredientsInAllBurgers" id="differentBurgersBox" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
-        <span id="differentMenus">{{uiLabels.menu}} {{burger.number+1}}</span><button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">ÄNDRA BURGARE</button><br>
+        <span id="differentMenus">{{uiLabels.menu}} {{burger.number+1}}</span>
+        <label>
+        <button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">Ändra</button>
+        <img id = "changePic" src="@/assets/change.jpg" width="15px" height="13px">
+      </label>
         <br>
             <div v-for="chosen in burger.burgerIngredients" :key="burger.burgerIngredients.indexOf(chosen)">
             {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice}}:-<br>
@@ -715,8 +719,17 @@ transform:scale(1.1);
   transform:scale(1.05);
 }
 #changeBurgerButton{
-  margin-left: 2em;
+  font-size: 16px;
+  margin-left: 1em;
+  background-color: light;
+  border: none;
 }
+
+#changePic{
+  background:transparent;
+
+}
+
 #langButton{
   position: absolute;
   top:30px;
@@ -726,6 +739,8 @@ transform:scale(1.1);
   background: transparent;
   border: transparent;
 }
+
+
 #langPic{
   height: 100%;
 }
