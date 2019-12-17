@@ -47,14 +47,17 @@
    <span v-for="(item, key2) in burger.ingredients" :key="key2">
      {{ item['ingredient_' + lang] }}
    </span> -->
-   <div id= "priset">
-   {{uiLabels.menuPrice}}: {{ price }} kr
-   </div>
-    <br>
-    <div v-for="chosen in countAllIngredients" :key="countAllIngredients.indexOf(chosen)">
-    {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice*chosen.count}} :-<br>
-  </div>
 
+    <div id= "priset">
+      {{uiLabels.menuPrice}}: {{ price }} kr
+    </div>
+    <br>
+    <div id="summaryContent" v-for="chosen in countAllIngredients" :key="countAllIngredients.indexOf(chosen)">
+        <button class="modifyOrder" v-on:click="summaryRemove(chosen)">-</button>
+        {{ chosen.count }}
+        <button class="modifyOrder" v-on:click="summaryAdd(chosen)">+</button>
+        {{chosen.name}} {{chosen.itemPrice*chosen.count}} kr<br>
+    </div>
     </div>
 
         <div class="Box d">
@@ -157,6 +160,7 @@ export default {
       for (let i = 0; i < this.chosenIngredients.length; i += 1) {
         ingredientTuples[i] = {};
         ingredientTuples[i].name = this.chosenIngredients[i]['ingredient_' + this.lang];
+        ingredientTuples[i].id = this.chosenIngredients[i]['ingredient_id'];
         ingredientTuples[i].itemPrice = this.chosenIngredients[i]['selling_price'];
         ingredientTuples[i].count = this.countNumberOfIngredients(this.chosenIngredients[i].ingredient_id);
       }
@@ -164,6 +168,7 @@ export default {
       .map(name=> {
         return{
           name: name,
+          id: ingredientTuples.find(o => o.name === name).id,
           itemPrice: ingredientTuples.find(o => o.name === name).itemPrice,
           count: ingredientTuples.find(o => o.name === name).count
                           };
@@ -265,6 +270,13 @@ export default {
       this.chosenIngredients.splice(this.chosenIngredients.indexOf(item),1);
       this.price += -item.selling_price;
     },
+    summaryRemove: function (item) {
+        this.$refs.ingredient[item.id-1].removeCounter();
+    },
+    summaryAdd: function(item) {
+        this.$refs.ingredient[item.id-1].incrementCounter();
+    },
+
     placeOrder: function () {
       var i,
       //Wrap the order in an object
@@ -282,8 +294,9 @@ export default {
       this.chosenIngredients = [];
     },
     addAnotherBurger: function(){
-      this.category = 1
+      this.category = 1;
       this.burgerNumber = this.currentOrder.burgers.length;
+      this.activeTab ="tab1";
     },
 
     checkCategory: function(number) {
@@ -450,6 +463,30 @@ position: fixed;
     right: 0;
 }
 
+.c button {
+    background-color: transparent;
+    border: black;
+    color: #BC0022;
+    padding: 0.5em 1em 0.55em 1em;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    font-size: 15px;
+    font-weight: bolder;
+    border-radius: 8px;
+}
+
+.c button:hover {
+    cursor: pointer;
+    transform:scale(1.05);
+    box-shadow:1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.c button:active {
+    box-shadow: none;
+    transform: none;
+}
+
 .tablinks {
   float: left;
   border-width: 0.1em;
@@ -522,8 +559,6 @@ grid-gap: 2em;
   grid-row: 1 / span 3;
   text-align: center;
   overflow-y: auto;
-    background: linear-gradient(to bottom, rgba(251, 251, 251, 1) 0%, rgba(251, 251, 251, 0) 100%);
-
 }
 
 
@@ -538,7 +573,10 @@ grid-gap: 2em;
     width: 25vw;
     top:80vh;
 }
-
+#summaryContent {
+    text-align: left;
+    padding-left: 1vw;
+}
 .example-panel {
   position: fixed;
   left:0;

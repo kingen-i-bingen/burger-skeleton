@@ -38,6 +38,7 @@ export default {
     restoreCounter: function () {
         this.counter += 1;
     },
+
       removeCounter:function () {
         if(this.counter > 0){
         this.counter -= 1;
