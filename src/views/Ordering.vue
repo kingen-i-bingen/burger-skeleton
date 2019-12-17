@@ -64,15 +64,14 @@
   <div id="orderScreen" v-show="category === 7">
       <button class="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1">{{uiLabels.previous}}</button>
       <div id="orderMenu">
-        <h1>{{ uiLabels.order }}</h1>
-        <div v-for="burger in countAllIngredientsInAllBurgers" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
+        <div v-for="burger in countAllIngredientsInAllBurgers" id="differentBurgersBox" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
         <h3>Burger {{burger.number+1}}</h3>
         <br>
             <div v-for="chosen in burger.burgerIngredients" :key="burger.burgerIngredients.indexOf(chosen)">
-            {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice*chosen.count}} :-<br>
+            {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice}}:-<br>
             </div>
         <br>
-        Price: {{burger.burgerPrice}}
+        <h4>Price: {{burger.burgerPrice}} kr</h4>
         <br>
       </div>
   </div>
@@ -550,6 +549,9 @@ grid-gap: 2em;
   grid-template-columns: 23vw 48vw 24vw;
 }
 #orderMenu{
+display:grid;
+grid-gap: 1vw;
+grid-template-columns: repeat(auto-fill,12em);
 padding: 1vw;
 grid-column: 2;
 border: 3px solid #ccd;
@@ -558,6 +560,9 @@ min-height: 40vw;
 }
 #orderMenu h1{
   text-align: center;
+}
+#differentBurgersBox{
+  padding: 1vw;
 }
 #placeOrderButton {
 background-color: #006400; /* Green */
