@@ -33,13 +33,12 @@
           :item="item"
           :lang="lang"
           :key="item.ingredient_id"
-          v-bind:style=" chosenIngredients.includes(item) ? 'border: 2px solid green;' : 'border: 2px solid #ccd;' ">
+          v-bind:style=" chosenIngredients.includes(item) ? 'border: 2px solid green; box-shadow: 0 1px 4px 0 green, 0 2px 5px 0 green;' : 'border: 2px solid #ccd;' ">
           </Ingredient>
         </div>
         <div class="Box b">
           <button class="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1"><span>{{uiLabels.previous}}</span></button>
-          <button class="NextButton" v-on:click="nextCategory()" v-show="category != 6"><span>{{uiLabels.next}}</span></button>
-          <button class="OrderSummary" v-on:click="nextCategory()" v-show="category === 6"> <span>{{uiLabels.orderSummary}}</span></button>
+          <button class="NextButton" v-on:click="nextCategory()" :disabled="category===6"><span>{{uiLabels.next}}</span></button>
         </div>
       <div class="Box c">
     <h1>{{ uiLabels.order }}</h1>
@@ -66,6 +65,13 @@
         </OrderItem>
       </div>
     </div>
+
+        <div class="Box d">
+            <div class="Box b">
+                <button class="OrderSummary" v-on:click="toSummary()" >{{uiLabels.orderSummary}} {{price}} kr</button>
+            </div>
+
+        </div>
   </div>
   <div id="orderScreen" v-show="category === 7">
       <button class="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1">{{uiLabels.previous}}</button>
@@ -200,35 +206,11 @@ export default {
       return counter;
     },
     nextCategory: function (){
-      if (this.category<6){
+
         this.category += 1;
         this.activeTab= "tab"+this.category;
-      }
-      else{
-        this.category += 1;
-        this.activeTab= "tab"+this.category;
-        //Add the burger to an order array
-        if (this.burgerNumber==this.currentOrder.burgers.length)
-        {
-          this.currentOrder.burgers.push({
-          ingredients: this.chosenIngredients,
-          price: this.price
-          });
-        }
-        else{
-          let order = {
-              ingredients: this.chosenIngredients,
-              price: this.price
-           };
-           this.currentOrder.burgers.splice(this.burgerNumber,1,order)
-        }
-         //set all counters to 0. Notice the use of $refs
-        for (let i = 0; i < this.$refs.ingredient.length; i += 1) {
-            this.$refs.ingredient[i].resetCounter();
-        }
-        this.chosenIngredients = [];
-        this.price = 0;
-      }
+
+
     },
     previousCategory: function (){
       if (this.category==7){
@@ -245,6 +227,31 @@ export default {
         this.category -= 1;
         this.activeTab= "tab"+this.category;
       }
+    },
+    toSummary: function() {
+        this.category = 7;
+        if (this.burgerNumber==this.currentOrder.burgers.length) {
+            this.currentOrder.burgers.push({
+                ingredients: this.chosenIngredients,
+                price: this.price
+            });
+        }
+        else {
+            let order = {
+                ingredients: this.chosenIngredients,
+                price: this.price
+            };
+            console.log(this.burgerNumber)
+            this.currentOrder.burgers.splice(this.burgerNumber, 1, order)
+            // console.log("burger1 ingredients in next")
+            // console.log(this.currentOrder.burgers[this.burgerNumber].ingredients);
+        }
+        //set all counters to 0. Notice the use of $refs
+        for (let i = 0; i < this.$refs.ingredient.length; i += 1) {
+            this.$refs.ingredient[i].resetCounter();
+        }
+        this.chosenIngredients = [];
+        this.price = 0;
     },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
@@ -331,34 +338,44 @@ h1{
 .b  button {
   border: none;
   color: white;
-  padding: 2vh 2vh;
+  padding: 2vh 0.5vw;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 18px;
   border-radius: 8px;
-  position: fixed;
-  top: 90vh;
+
+
 }
 
 .NextButton {
-background-color: #4CAF50; /* Green */
+background-color: mediumblue; /* Green */
 height: 7vh;
 width: 12vw;
 right: 29vw;
+top: 90vh;
+position: fixed;
+
 }
 
 .PreviousButton {
 background-color: #f44336; /* Red */
 height: 7vh;
 width: 12vw;
+top: 90vh;
+position: fixed;
+
 }
 
+
 .OrderSummary {
-background-color: #4CAF50; /* Green */
-height: 7vh;
-width: 12vw;
-right: 29vw;
+    background-color: #4CAF50; /* Green */
+    height: 9vh;
+    width: 15vw;
+    position: relative;
+    top: 3.5vh;
+    left: 8vw;
+
 }
 
 .b button:hover {
@@ -376,14 +393,17 @@ right: 29vw;
   position: relative;
   transition: 0.5s;
 }
+.b button span:after {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    transition: 0.5s;
+}
 
 .NextButton span:after {
   content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
   right: -20px;
-  transition: 0.5s;
+
 }
 
 .NextButton:hover span {
@@ -395,20 +415,16 @@ right: 29vw;
   right: 0;
 }
 
-.PreviousButton span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
+.NextButton:disabled{
+    opacity: 50%;
+    pointer-events: none;
 }
+
 
 .PreviousButton span:after {
   content: '\00ab';
-  position: absolute;
-  opacity: 0;
-  top: 0;
   left: -20px;
-  transition: 0.5s;
+
 }
 
 .PreviousButton:hover span {
@@ -423,6 +439,19 @@ right: 29vw;
 .PreviousButton:disabled{
   opacity: 50%;
   pointer-events: none;
+}
+
+.OrderSummary span:after {
+    content: '\00bb';
+    right: -20px;
+}
+
+.OrderSummary:hover span {
+    padding-right: 25px;
+}
+.OrderSummary:hover span:after {
+    opacity: 1;
+    right: 0;
 }
 
 .tablinks {
@@ -487,15 +516,29 @@ grid-gap: 2em;
   position: fixed;
   right: 2vw;
   border: 3px solid #ccd;
-  border-radius: 1em;
-  height: 80vh;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+  height: 65vh;
   width: 25vw;
   top:15vh;
   grid-column: 2;
   grid-row: 1 / span 3;
   text-align: center;
   overflow-y: auto;
+    background: linear-gradient(to bottom, rgba(251, 251, 251, 1) 0%, rgba(251, 251, 251, 0) 100%);
 
+}
+
+.d {
+    position: fixed;
+    right: 2vw;
+    border: 3px solid #ccd;
+    border-top: none;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    height: 15vh;
+    width: 25vw;
+    top:80vh;
 }
 
 .example-panel {
