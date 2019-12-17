@@ -238,23 +238,27 @@ export default {
     },
     toSummary: function() {
         this.category = 7;
-        if (this.chosenIngredients.length > 0){
         if (this.burgerNumber==this.currentOrder.burgers.length ) {
-            this.currentOrder.burgers.push({
-                ingredients: this.chosenIngredients,
-                price: this.price
-            });
+            if (this.chosenIngredients.length > 0) {
+                this.currentOrder.burgers.push({
+                    ingredients: this.chosenIngredients,
+                    price: this.price
+                });
+            }
         }
         else {
-            let order = {
-                ingredients: this.chosenIngredients,
-                price: this.price
+            if (this.chosenIngredients.length > 0) {
+                let order = {
+                    ingredients: this.chosenIngredients,
+                    price: this.price
 
-            };
-            console.log(this.burgerNumber)
-            this.currentOrder.burgers.splice(this.burgerNumber, 1, order)
-            // console.log("burger1 ingredients in next")
-            // console.log(this.currentOrder.burgers[this.burgerNumber].ingredients);
+                };
+
+                this.currentOrder.burgers.splice(this.burgerNumber, 1, order);
+            }
+            else{
+                this.currentOrder.burgers.splice(this.burgerNumber, 1);
+            }
         }
         //set all counters to 0. Notice the use of $refs
         for (let i = 0; i < this.$refs.ingredient.length; i += 1) {
@@ -262,7 +266,9 @@ export default {
         }
         this.chosenIngredients = [];
         this.price = 0;
-    }},
+
+        },
+
     changeBurger: function(id){
       this.category = 1;
       this.activeTab = "tab"+this.category;
