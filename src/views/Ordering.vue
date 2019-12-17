@@ -220,7 +220,8 @@ export default {
     },
     toSummary: function() {
         this.category = 7;
-        if (this.burgerNumber==this.currentOrder.burgers.length) {
+        if (this.chosenIngredients.length > 0){
+        if (this.burgerNumber==this.currentOrder.burgers.length ) {
             this.currentOrder.burgers.push({
                 ingredients: this.chosenIngredients,
                 price: this.price
@@ -230,6 +231,7 @@ export default {
             let order = {
                 ingredients: this.chosenIngredients,
                 price: this.price
+
             };
             console.log(this.burgerNumber)
             this.currentOrder.burgers.splice(this.burgerNumber, 1, order)
@@ -242,7 +244,7 @@ export default {
         }
         this.chosenIngredients = [];
         this.price = 0;
-    },
+    }},
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
