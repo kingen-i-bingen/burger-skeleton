@@ -31,6 +31,8 @@
   "newMenu" : "Make another menu",
   "buildBurger" : "Build your burger",
   "welcome" : "Welcome to Craft burger",
-  "totalPrice": "Your total price: "
+  "totalPrice": "Your total price: ",
+  "cancel": "Cancel"
+
 
 }

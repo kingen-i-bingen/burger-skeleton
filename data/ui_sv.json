@@ -31,6 +31,7 @@
   "newMenu" : "Gör en till meny",
   "buildBurger" : "Bygg din burgare",
   "welcome" : "Välkommen till Craft burger",
-  "totalPrice": "Ditt totalpris: "
+  "totalPrice": "Ditt totalpris: ",
+  "cancel": "Avbryt"
 
 }

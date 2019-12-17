@@ -7,7 +7,10 @@
           <img id="langPic" v-if="flag_en" src="@/assets/englishFlag.webp" width="30px" height="20px">
           <img id="langPic" v-if="flag_sv" src="@/assets/swedishFlag.png" width="30px" height="20px">
         </button>
-        <!-- <h1 v-show="category !== 7">{{ uiLabels.headline }}</h1> -->
+        <button id="cancelOrder" @click="$router.push({ path: '/'})">
+          <img id="CancelSym" src="@/assets/cancel-icon.png" width="40px" height="40px">
+        </button>
+        <h1 v-show="category !== 7">{{ uiLabels.headline }}</h1>
         <h1 v-show="category === 7">{{ uiLabels.myOrder }}</h1>
     </header>
     <div class="wrapper" v-show="category !== 7 && category !== 8">
@@ -340,9 +343,6 @@ h1{
   font-weight: lighter;
 
 }
-
-
-
 #header button:hover{
   cursor:pointer;
   transform:scale(1.1);
@@ -359,8 +359,6 @@ h1{
   display: inline-block;
   font-size: 18px;
   border-radius: 8px;
-
-
 }
 
 .NextButton {
@@ -381,7 +379,6 @@ top: 90vh;
 position: fixed;
 
 }
-
 
 .OrderSummary {
     background-color: #4CAF50; /* Green */
@@ -743,5 +740,13 @@ transform:scale(1.1);
 
 #langPic{
   height: 100%;
+}
+#cancelOrder{
+  position: absolute;
+  top:30px;
+  padding:0;
+  margin:0;
+  background: transparent;
+  border: transparent;
 }
 </style>
