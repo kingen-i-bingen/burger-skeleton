@@ -47,11 +47,14 @@
    <span v-for="(item, key2) in burger.ingredients" :key="key2">
      {{ item['ingredient_' + lang] }}
    </span> -->
+   <div id= "priset">
+   {{uiLabels.menuPrice}}: {{ price }} kr
+   </div>
+    <br>
     <div v-for="chosen in countAllIngredients" :key="countAllIngredients.indexOf(chosen)">
     {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice*chosen.count}} :-<br>
-    </div>
-    <br>
-    {{ price }} kr
+  </div>
+
     </div>
 
         <div class="Box d">
@@ -267,8 +270,6 @@ export default {
     addAnotherBurger: function(){
       this.category = 1
       this.burgerNumber = this.currentOrder.burgers.length;
-      this.activeTab ="tab1";
-
     },
 
     checkCategory: function(number) {
@@ -478,6 +479,7 @@ grid-gap: 2em;
 
 }
 .a{
+  text-align: left;
   grid-column: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill,12em);
@@ -510,6 +512,7 @@ grid-gap: 2em;
 
 }
 
+
 .d {
     position: fixed;
     right: 2vw;
@@ -538,6 +541,10 @@ grid-gap: 2em;
   border-radius: 1em;
   text-align: center;
 }
+#priset{
+  font-size: 22px;
+}
+
 #orderScreen{
   display:grid;
   grid-template-columns: 23vw 48vw 24vw;

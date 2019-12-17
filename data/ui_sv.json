@@ -22,6 +22,7 @@
   "next" : "Nästa",
   "previous" : "Tillbaka",
   "choose" : "Välj",
+  "menuPrice": "Menypris",
   "arrayOfLabels" : ["Protein", "Pålägg", "Dressing", "Bröd", "Tillbehör","Dryck"],
   "orderSummary" : "Ordersummering",
   "myOrder" : "Min order",

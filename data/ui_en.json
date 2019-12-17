@@ -27,6 +27,7 @@
   "orderSummary" : "Order summary",
   "myOrder" : "My order",
   "menu" :"Menu",
+  "menuPrice": "Menu price",
   "newBurger" : "Make another burger",
   "buildBurger" : "Build your burger",
   "welcome" : "Welcome to Craft burger"
