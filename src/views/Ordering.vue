@@ -66,14 +66,13 @@
   <div id="orderScreen" v-show="category === 7">
       <button class="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1">{{uiLabels.previous}}</button>
       <div id="orderMenu">
-        <div id= "orderBoxes">
+        <div id= "orderBox">
         <div v-for="burger in countAllIngredientsInAllBurgers" id="differentBurgersBox" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
         <span id="differentMenus">{{uiLabels.menu}} {{burger.number+1}}</span>
         <label>
-        <button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">Ändra</button>
-        <img id = "changePic" src="@/assets/change.jpg" width="15px" height="13px">
-      </label>
-        <br>
+            <button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">{{uiLabels.change}}</button>
+            <img id = "changePic" src="@/assets/change.jpg" width="15px" height="13px">
+        </label><br><br>
             <div v-for="chosen in burger.burgerIngredients" :key="burger.burgerIngredients.indexOf(chosen)">
             {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice}}:-<br>
             </div>
@@ -621,7 +620,7 @@ border: 3px solid #ccd;
 border-radius: 1em;
 min-height: 40vw;
 }
-#orderBoxes{
+#orderBox{
   display:grid;
   grid-row: 1;
   grid-gap: 1vw;
@@ -635,7 +634,7 @@ min-height: 40vw;
 }
 #differentMenus{
   font-weight: bold;
-  text-decoration:underline;
+  font-size: 20px;
 }
 #placeOrderButton {
 background-color: #006400; /* Green */
@@ -714,15 +713,24 @@ transform:scale(1.1);
   box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
   transform:scale(1.05);
 }
+
 #changeBurgerButton{
   font-size: 16px;
-  margin-left: 1em;
   background-color: light;
+  text-decoration: underline;
   border: none;
+  margin-left: 0.5em;
+}
+#changeBurgerButton:hover{
+  cursor: pointer;
+}
+#orderScreen label:hover {
+  cursor: pointer;
 }
 
 #changePic{
   background:transparent;
+
 
 }
 
