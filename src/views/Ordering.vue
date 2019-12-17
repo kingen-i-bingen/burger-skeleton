@@ -10,7 +10,6 @@
         <button id="cancelOrder" @click="$router.push({ path: '/'})">
           <img id="CancelSym" src="@/assets/cancel-icon.png" width="40px" height="40px">
         </button>
-        <h1 v-show="category !== 7">{{ uiLabels.headline }}</h1>
         <h1 v-show="category === 7">{{ uiLabels.myOrder }}</h1>
     </header>
     <div class="wrapper" v-show="category !== 7 && category !== 8">
