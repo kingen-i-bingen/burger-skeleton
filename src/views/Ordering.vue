@@ -7,10 +7,10 @@
           <img id="langPic" v-if="flag_en" src="@/assets/englishFlag.webp" width="30px" height="20px">
           <img id="langPic" v-if="flag_sv" src="@/assets/swedishFlag.png" width="30px" height="20px">
         </button>
-        <h1 v-show="category !== 7">{{ uiLabels.headline }}</h1>
+        <!-- <h1 v-show="category !== 7">{{ uiLabels.headline }}</h1> -->
         <h1 v-show="category === 7">{{ uiLabels.myOrder }}</h1>
     </header>
-    <div class="wrapper" v-show="category !== 7">
+    <div class="wrapper" v-show="category !== 7 && category !== 8">
       <h1 id="category"> {{uiLabels.choose}} {{ arrayOfLabels }}</h1>
 
       <div class="tabs">
@@ -66,7 +66,7 @@
       <div id="orderMenu">
         <div id= "orderBoxes">
         <div v-for="burger in countAllIngredientsInAllBurgers" id="differentBurgersBox" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
-        <span id="differentMenus">{{uiLabels.menu}} {{burger.number+1}}</span><button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">Ändra burgare</button>
+        <span id="differentMenus">{{uiLabels.menu}} {{burger.number+1}}</span><button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">ÄNDRA BURGARE</button><br>
         <br>
             <div v-for="chosen in burger.burgerIngredients" :key="burger.burgerIngredients.indexOf(chosen)">
             {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice}}:-<br>
@@ -80,7 +80,10 @@
   </div>
   <button id="placeOrderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }} {{totalPrice()}} kr </button>
   <button id="newBurgerButton" v-on:click="addAnotherBurger()"> {{uiLabels.newMenu}} </button>
-</div>
+  </div>
+  <div v-show="category === 8">
+    <h1> Tack för din order </h1>
+  </div>
 </div>
 </body>
 </template>
@@ -281,20 +284,16 @@ export default {
     },
 
     placeOrder: function () {
-      var i,
-      //Wrap the order in an object
-        order = {
-          ingredients: this.chosenIngredients,
-          price: this.price
-        };
+      for (let j = 0; j < this.currentOrder.burgers.length; j += 1){
+
+        let order = {
+            ingredients: this.currentOrder.burgers[j].ingredients,
+            price: this.currentOrder.burgers[j].price
+          };
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
       this.$store.state.socket.emit('order', {order: order});
-      //set all counters to 0. Notice the use of $refs
-      for (i = 0; i < this.$refs.ingredient.length; i += 1) {
-        this.$refs.ingredient[i].resetCounter();
-      }
-      this.price = 0;
-      this.chosenIngredients = [];
+    }
+    this.category = 8;
     },
     addAnotherBurger: function(){
       this.category = 1;
@@ -611,7 +610,7 @@ grid-gap: 2em;
 }
 #orderScreen{
   display:grid;
-  grid-template-columns: 23vw 48vw 24vw;
+  grid-template-columns: 16vw 60vw 21vw;
 }
 #orderMenu{
 display:grid;
@@ -626,7 +625,7 @@ min-height: 40vw;
   display:grid;
   grid-row: 1;
   grid-gap: 1vw;
-  grid-template-columns: repeat(auto-fill,12em);
+  grid-template-columns: repeat(auto-fill,14em);
 }
 #orderMenu h1{
   text-align: center;
