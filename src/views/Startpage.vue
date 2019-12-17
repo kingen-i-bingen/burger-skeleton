@@ -7,7 +7,7 @@
       </button>
     <h1 id="startHead"> {{uiLabels.welcome}} </h1>
   </header>
-    <button class="BuildButton" v-on:click="previousCategory()"> {{uiLabels.buildBurger}} </button>
+    <button class="BuildButton" @click="$router.push({ path: '/ordering'})"> {{uiLabels.buildBurger}} </button>
 </div>
 
 </template>
@@ -74,6 +74,16 @@ h1 {
 }
 .langPic{
   height: 100%;
+}
+
+#langButton{
+  position: absolute;
+  top:30px;
+  right:50px;
+  padding:0;
+  margin:0;
+  background: transparent;
+  border: transparent;
 }
 
 </style>
