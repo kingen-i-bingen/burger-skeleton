@@ -67,18 +67,21 @@
   <div id="orderScreen" v-show="category === 7">
       <button class="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1">{{uiLabels.previous}}</button>
       <div id="orderMenu">
+        <div id= "orderBoxes">
         <div v-for="burger in countAllIngredientsInAllBurgers" id="differentBurgersBox" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
         <h3>Burger {{burger.number+1}}</h3>
         <br>
             <div v-for="chosen in burger.burgerIngredients" :key="burger.burgerIngredients.indexOf(chosen)">
             {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice}}:-<br>
             </div>
-        <br>
         <h4>Price: {{burger.burgerPrice}} kr</h4>
-        <br>
+      </div>
+      </div>
+      <div id= "totalpris">
+      {{uiLabels.totalPrice}}{{totalPrice()}} kr
       </div>
   </div>
-  <button id="placeOrderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+  <button id="placeOrderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }} {{totalPrice()}} kr </button>
   <button id="newBurgerButton" v-on:click="addAnotherBurger()"> {{uiLabels.newMenu}} </button>
 </div>
 </div>
@@ -172,6 +175,15 @@ export default {
     }
   },
   methods: {
+
+    totalPrice: function () {
+      let value=0
+      for (let j = 0; j < this.currentOrder.burgers.length; j += 1){
+        value+= this.currentOrder.burgers[j].price
+      }
+      return value;
+    },
+
     changeCategory: function (number, button) {
       this.category = number;
       this.activeTab = button;
@@ -547,19 +559,32 @@ grid-gap: 2em;
   font-size: 22px;
 }
 
+#totalpris{
+  font-size: 30px;
+  /* position: absolute; */
+  border-top: solid 2px black;
+  /* bottom: 5vh;
+  left: 27vw; */
+  grid-row: 2;
+
+}
 #orderScreen{
   display:grid;
   grid-template-columns: 23vw 48vw 24vw;
 }
 #orderMenu{
 display:grid;
-grid-gap: 1vw;
-grid-template-columns: repeat(auto-fill,12em);
 padding: 1vw;
 grid-column: 2;
 border: 3px solid #ccd;
 border-radius: 1em;
 min-height: 40vw;
+}
+#orderBoxes{
+  display:grid;
+  grid-row: 1;
+  grid-gap: 1vw;
+  grid-template-columns: repeat(auto-fill,12em);
 }
 #orderMenu h1{
   text-align: center;

@@ -30,5 +30,7 @@
   "number": "nr.",
   "newMenu" : "Gör en till meny",
   "buildBurger" : "Bygg din burgare",
-  "welcome" : "Välkommen till Craft burger"
+  "welcome" : "Välkommen till Craft burger",
+  "totalPrice": "Ditt totalpris: "
+
 }
