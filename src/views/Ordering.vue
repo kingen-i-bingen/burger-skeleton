@@ -42,12 +42,6 @@
         </div>
       <div class="Box c">
   <h1>{{uiLabels.menu}} {{uiLabels.number}} {{burgerNumber+1}}</h1>
-  <!-- <div v-for="(burger, key) in currentOrder.burgers" :key="key">
-   {{key}}:
-   <span v-for="(item, key2) in burger.ingredients" :key="key2">
-     {{ item['ingredient_' + lang] }}
-   </span> -->
-
     <div id= "priset">
       {{uiLabels.menuPrice}}: {{ price }} kr
     </div>
@@ -72,7 +66,7 @@
       <div id="orderMenu">
         <div id= "orderBoxes">
         <div v-for="burger in countAllIngredientsInAllBurgers" id="differentBurgersBox" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
-        <h3>Burger {{burger.number+1}}</h3>
+        <span id="differentMenus">{{uiLabels.menu}} {{burger.number+1}}</span><button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">Ändra burgare</button>
         <br>
             <div v-for="chosen in burger.burgerIngredients" :key="burger.burgerIngredients.indexOf(chosen)">
             {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice}}:-<br>
@@ -227,7 +221,6 @@ export default {
         this.price = this.currentOrder.burgers[this.burgerNumber].price;
         for (let i = 0; i < this.chosenIngredients.length; i += 1) {
           this.$refs.ingredient[this.chosenIngredients[i].ingredient_id-1].restoreCounter();
-          console.log(this.chosenIngredients[i].ingredient_id);
         }
       }
       else{
@@ -262,6 +255,16 @@ export default {
         this.chosenIngredients = [];
         this.price = 0;
     }},
+    changeBurger: function(id){
+      this.category = 1;
+      this.activeTab = "tab"+this.category;
+      this.burgerNumber = id;
+      this.chosenIngredients = this.currentOrder.burgers[this.burgerNumber].ingredients;
+      this.price = this.currentOrder.burgers[this.burgerNumber].price;
+      for (let i = 0; i < this.chosenIngredients.length; i += 1) {
+        this.$refs.ingredient[this.chosenIngredients[i].ingredient_id-1].restoreCounter();
+      }
+    },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
@@ -612,6 +615,7 @@ grid-gap: 2em;
 }
 #orderMenu{
 display:grid;
+grid-gap: 1vw;
 padding: 1vw;
 grid-column: 2;
 border: 3px solid #ccd;
@@ -629,6 +633,10 @@ min-height: 40vw;
 }
 #differentBurgersBox{
   padding: 1vw;
+}
+#differentMenus{
+  font-weight: bold;
+  text-decoration:underline;
 }
 #placeOrderButton {
 background-color: #006400; /* Green */
@@ -706,6 +714,9 @@ transform:scale(1.1);
 #newBurgerButton:active {
   box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
   transform:scale(1.05);
+}
+#changeBurgerButton{
+  margin-left: 2em;
 }
 #langButton{
   position: absolute;
