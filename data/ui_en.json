@@ -34,7 +34,7 @@
   "welcome" : "Welcome to Craft burger",
   "totalPrice": "Your total price: ",
   "cancel": "Cancel",
-  "thankOrder": "Thank you for ordering!"
-
-
+  "thankOrder": "Thank you for ordering!",
+  "stockPage": "Stock Page",
+  "inStock": "in stock"
 }

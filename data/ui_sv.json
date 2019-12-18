@@ -34,7 +34,7 @@
   "welcome" : "Välkommen till Craft burger",
   "totalPrice": "Ditt totalpris: ",
   "cancel": "Avbryt",
-  "thankOrder": "Tack för din beställning!"
-
-
+  "thankOrder": "Tack för din beställning!",
+  "stockPage": "Lagersaldo",
+  "inStock": "i lager"
 }
