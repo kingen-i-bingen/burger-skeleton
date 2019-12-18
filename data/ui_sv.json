@@ -33,6 +33,8 @@
   "buildBurger" : "Bygg din burgare",
   "welcome" : "Välkommen till Craft burger",
   "totalPrice": "Ditt totalpris: ",
-  "cancel": "Avbryt"
+  "cancel": "Avbryt",
+  "thankOrder": "Tack för din beställning!"
+
 
 }

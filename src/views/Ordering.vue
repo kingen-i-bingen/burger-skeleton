@@ -87,7 +87,7 @@
   <button id="newBurgerButton" v-on:click="addAnotherBurger()"> {{uiLabels.newMenu}} </button>
   </div>
   <div v-show="category === 8">
-    <h1> Tack för din order </h1>
+    <h1 id="thankYouOrder"> {{uiLabels.thankOrder}} </h1>
   </div>
 </div>
 </body>
@@ -732,6 +732,11 @@ transform:scale(1.1);
 }
 #orderScreen label:hover {
   cursor: pointer;
+}
+#thankYouOrder{
+  position: fixed;
+  margin-left: 30vw;
+  margin-top: 32vh;
 }
 
 #changePic{
