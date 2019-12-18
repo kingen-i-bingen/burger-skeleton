@@ -24,7 +24,7 @@
   "previous" : "Previous",
   "number" : "no.",
   "choose" : "Choose",
-  "arrayOfLabels" : ["Patty", "Toppings", "Sauce", "Bread", "Sides","Drink"],
+  "arrayOfLabels" : ["Patty", "Toppings", "Sauce", "Bread", "Sides","Drinks"],
   "orderSummary" : "Order summary",
   "myOrder" : "My order",
   "menu" :"Menu",

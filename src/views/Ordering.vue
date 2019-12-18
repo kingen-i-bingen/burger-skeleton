@@ -448,19 +448,35 @@ position: fixed;
 }
 
 
+.PreviousButton:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  cursor:pointer;
+  transform:scale(1.1);
+}
+.PreviousButton span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
 .PreviousButton span:after {
   content: '\00ab';
   left: -20px;
-
-}
-
-.PreviousButton:hover span {
-  padding-left: 25px;
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  transition: 0.5s;
 }
 
 .PreviousButton:hover span:after {
+  padding-left: 25px;
   opacity: 1;
   left: 0;
+}
+.Previousbutton:active {
+  box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
+  transform:scale(1.05);
 }
 
 .PreviousButton:disabled{
@@ -746,6 +762,7 @@ transform:scale(1.1);
   background:transparent;
 
 }
+
 
 #langButton{
   position: absolute;
