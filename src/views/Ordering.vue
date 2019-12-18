@@ -68,6 +68,7 @@
       <div id="orderMenu">
         <div id= "orderBoxes">
         <div v-for="burger in countAllIngredientsInAllBurgers" id="differentBurgersBox" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
+            <button id="removeOrder" v-on:click="removeOrder(burger.number)">X</button>
         <span id="differentMenus">{{uiLabels.menu}} {{burger.number+1}}</span>
         <label>
         <button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">{{uiLabels.change}}</button>
@@ -80,10 +81,11 @@
         <h4>Price: {{burger.burgerPrice}} kr</h4>
       </div>
       </div>
-      <div id= "totalpris">
-      {{uiLabels.totalPrice}}{{totalPrice()}} kr
-      </div>
+
   </div>
+      <div id= "totalpris">
+          {{uiLabels.totalPrice}}{{totalPrice()}} kr
+      </div>
   <button id="placeOrderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }} {{totalPrice()}} kr </button>
   <button id="newBurgerButton" v-on:click="addAnotherBurger()"> {{uiLabels.newMenu}} </button>
   </div>
@@ -279,6 +281,9 @@ export default {
         this.price = 0;
 
         },
+      removeOrder:function(id){
+          this.currentOrder.burgers.splice(id, 1)
+      },
 
     changeBurger: function(id){
       this.category = 1;
@@ -640,10 +645,18 @@ grid-gap: 2em;
 #totalpris{
   font-size: 30px;
   /* position: absolute; */
-  border-top: solid 2px black;
+    border: 3px solid #ccd;
+    border-top: none;
+    border-bottom-right-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
   /* bottom: 5vh;
   left: 27vw; */
   grid-row: 2;
+    grid-column: 2;
+    padding: 0.8em;
+    width: inherit;
+    margin-bottom: 2vh;
+
 
 }
 #orderScreen{
@@ -651,14 +664,15 @@ grid-gap: 2em;
   grid-template-columns: 16vw 60vw 21vw;
 }
 #orderMenu{
-display:grid;
-grid-gap: 1vw;
-padding: 1vw;
-grid-column: 2;
-border: 3px solid #ccd;
-border-radius: 1em;
-min-height: 40vw;
+
+    padding: 1vw;
+    grid-column: 2;
+    border: 3px solid #ccd;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    min-height: 64vh;
 }
+
 #orderBoxes{
   display:grid;
   grid-row: 1;
@@ -754,7 +768,6 @@ transform:scale(1.1);
 }
 #changeBurgerButton{
   font-size: 16px;
-   background-color: light;
    background-color: transparent;
    text-decoration: underline;
    border: none;
@@ -767,6 +780,20 @@ transform:scale(1.1);
 #orderScreen label:hover {
   cursor: pointer;
 }
+
+#removeOrder {
+    font-size: 18px;
+    font-weight: bold;
+    color: firebrick;
+    background-color: transparent;
+    border: none;
+    margin-right: 0.3em;
+}
+#removeOrder:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
 
 #thankYouOrder{
   position: fixed;
