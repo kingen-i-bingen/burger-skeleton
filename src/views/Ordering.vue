@@ -751,7 +751,6 @@ transform:scale(1.1);
   margin-left: 1em;
   background-color: light;
   border: none;
-<<<<<<< Updated upstream
 }
 #thankYouOrder{
   position: fixed;
@@ -764,14 +763,6 @@ transform:scale(1.1);
 
 }
 
-=======
-}
-
-#changePic{
-  background:transparent;
-
-}
->>>>>>> Stashed changes
 
 #langButton{
   position: absolute;
