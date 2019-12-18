@@ -31,7 +31,7 @@ export default {
   methods: {
     checkIfOut:function(stock){
         if(stock<1){
-          return this.uiLabels.out;
+          return "OUT";
         }
         else{
           return "";

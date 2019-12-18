@@ -312,6 +312,7 @@ export default {
             ingredients: this.currentOrder.burgers[j].ingredients,
             price: this.currentOrder.burgers[j].price
           };
+
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
       this.$store.state.socket.emit('order', {order: order});
     }

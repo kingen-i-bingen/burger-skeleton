@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Startpage from './views/Startpage.vue'
 import Ordering from './views/Ordering.vue'
+import Stockpage from './views/Stockpage.vue'
 import VuejsDialog from "vuejs-dialog"
 
 Vue.use(Router)
@@ -25,6 +26,14 @@ let router = new Router({
       },
       name: 'ordering',
       component: Ordering
+    },
+    {
+      path: '/stockpage',
+      meta: {
+        title: 'Kraft Burgers',
+      },
+      name: 'stockpage',
+      component: Stockpage
     },
     {
       path: '/kitchen',
