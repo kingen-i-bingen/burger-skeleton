@@ -16,7 +16,7 @@
 
     <OrderItemToPrepare
       v-for="(order, key) in orders"
-      v-if="order.status !== 'done'"
+      v-if="order.status === 'not-started'"
       v-on:done="markDone(key)"
       :order-id="key"
       :order="order"
@@ -30,24 +30,25 @@
 
   <div id="finishedOrder">
     <h1>{{ uiLabels.ordersFinished }}</h1>
-    <OrderItem
+    <OrderItemFinished
       v-for="(order, key) in orders"
       v-if="order.status === 'done'"
+      v-on:taken="markTaken(key)"
       :order-id="key"
       :order="order"
       :lang="lang"
       :ui-labels="uiLabels"
       :key="key">
+    </OrderItemFinished>
 
-    </OrderItem>
   </div>
-
 </div>
 </template>
+
 <script>
 import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
-
+import OrderItemFinished from '@/components/OrderItemFinished.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -57,6 +58,7 @@ export default {
   components: {
     OrderItem,
     OrderItemToPrepare,
+    OrderItemFinished
 
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
@@ -92,6 +94,11 @@ export default {
       this.$store.state.socket.emit("orderDone", orderid);
     },
 
+    markTaken: function(orderid) {
+      console.log("and");
+      this.$store.state.socket.emit("orderTaken", orderid);
+
+    },
 
   countNumberOfIngredients: function (id) {
      let counter = 0;

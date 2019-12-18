@@ -103,6 +103,11 @@ Data.prototype.markOrderDone = function (orderId) {
   this.orders[orderId].status = "done";
 };
 
+Data.prototype.markOrderTaken = function (orderId) {
+  this.orders[orderId].status = "taken";
+};
+
+
 Data.prototype.markOrderStarted = function (orderId) {
   this.orders[orderId].status = "started";
 };
