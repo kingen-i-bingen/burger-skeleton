@@ -66,17 +66,18 @@
   <div id="orderScreen" v-show="category === 7">
       <button class="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1">{{uiLabels.previous}}</button>
       <div id="orderMenu">
-        <div id= "orderBox">
+        <div id= "orderBoxes">
         <div v-for="burger in countAllIngredientsInAllBurgers" id="differentBurgersBox" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
         <span id="differentMenus">{{uiLabels.menu}} {{burger.number+1}}</span>
         <label>
-            <button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">{{uiLabels.change}}</button>
-            <img id = "changePic" src="@/assets/change.jpg" width="15px" height="13px">
-        </label><br><br>
+        <button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">Ändra</button>
+        <img id = "changePic" src="@/assets/change.jpg" width="15px" height="13px">
+      </label>
+        <br>
             <div v-for="chosen in burger.burgerIngredients" :key="burger.burgerIngredients.indexOf(chosen)">
             {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice}}:-<br>
             </div>
-        <h4>{{uiLabels.menuPrice}}: {{burger.burgerPrice}} kr</h4>
+        <h4>Price: {{burger.burgerPrice}} kr</h4>
       </div>
       </div>
       <div id= "totalpris">
@@ -106,7 +107,7 @@ import sharedVueStuff from '@/components/sharedVueStuff.js'
 /* instead of defining a Vue instance, export default allows the only
 necessary Vue instance (found in main.js) to import your data and methods */
 export default {
-  name: 'Ordering',
+  name: 'ordering',
   components: {
     Ingredient,
     OrderItem
@@ -126,6 +127,16 @@ export default {
       burgerNumber: 0
     }
   },
+  beforeRouteLeave (to, from, next) {
+			this.$dialog.confirm('Do you want to proceed?')
+			.then(function () {
+				next();
+			})
+			.catch(function () {
+				next(false);
+			});
+		},
+
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {
       this.orderNumber = data;
@@ -390,7 +401,7 @@ position: fixed;
     width: 15vw;
     position: relative;
     top: 3.5vh;
-    left: 5.3vw;
+    left: 8vw;
 
 }
 
@@ -626,7 +637,7 @@ border: 3px solid #ccd;
 border-radius: 1em;
 min-height: 40vw;
 }
-#orderBox{
+#orderBoxes{
   display:grid;
   grid-row: 1;
   grid-gap: 1vw;
@@ -640,7 +651,7 @@ min-height: 40vw;
 }
 #differentMenus{
   font-weight: bold;
-  font-size: 20px;
+  text-decoration:underline;
 }
 #placeOrderButton {
 background-color: #006400; /* Green */
@@ -719,19 +730,11 @@ transform:scale(1.1);
   box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
   transform:scale(1.05);
 }
-
 #changeBurgerButton{
   font-size: 16px;
-  background-color: transparent;
-  text-decoration: underline;
+  margin-left: 1em;
+  background-color: light;
   border: none;
-  margin-left: 0.5em;
-}
-#changeBurgerButton:hover{
-  cursor: pointer;
-}
-#orderScreen label:hover {
-  cursor: pointer;
 }
 #thankYouOrder{
   position: fixed;
@@ -741,6 +744,7 @@ transform:scale(1.1);
 
 #changePic{
   background:transparent;
+
 }
 
 #langButton{
