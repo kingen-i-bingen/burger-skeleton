@@ -402,7 +402,7 @@ position: fixed;
     width: 15vw;
     position: relative;
     top: 3.5vh;
-    left: 8vw;
+    left: 5.5vw;
 
 }
 
@@ -453,6 +453,7 @@ position: fixed;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   cursor:pointer;
   transform:scale(1.1);
+
 }
 .PreviousButton span {
   cursor: pointer;
@@ -469,9 +470,12 @@ position: fixed;
   top: 0;
   transition: 0.5s;
 }
+.PreviousButton:hover span{
+  padding-left: 30px;
+
+}
 
 .PreviousButton:hover span:after {
-  padding-left: 25px;
   opacity: 1;
   left: 0;
 }
@@ -608,6 +612,7 @@ grid-gap: 2em;
     width: 25vw;
     top:80vh;
 }
+
 #summaryContent {
     text-align: left;
     padding-left: 1vw;
