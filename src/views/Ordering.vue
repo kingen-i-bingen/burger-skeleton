@@ -70,9 +70,9 @@
         <div v-for="burger in countAllIngredientsInAllBurgers" id="differentBurgersBox" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
         <span id="differentMenus">{{uiLabels.menu}} {{burger.number+1}}</span>
         <label>
-        <button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">Ändra</button>
+        <button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">{{uiLabels.change}}</button>
         <img id = "changePic" src="@/assets/change.jpg" width="15px" height="13px">
-      </label>
+      </label><br>
         <br>
             <div v-for="chosen in burger.burgerIngredients" :key="burger.burgerIngredients.indexOf(chosen)">
             {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice}}:-<br>
@@ -668,7 +668,7 @@ min-height: 40vw;
 }
 #differentMenus{
   font-weight: bold;
-  text-decoration:underline;
+  font-size: 20px;
 }
 #placeOrderButton {
 background-color: #006400; /* Green */
@@ -749,10 +749,20 @@ transform:scale(1.1);
 }
 #changeBurgerButton{
   font-size: 16px;
-  margin-left: 1em;
-  background-color: light;
-  border: none;
+   background-color: light;
+   background-color: transparent;
+   text-decoration: underline;
+   border: none;
+   margin-left: 0.5em;
 }
+
+#changeBurgerButton:hover{
+  cursor: pointer;
+}
+#orderScreen label:hover {
+  cursor: pointer;
+}
+
 #thankYouOrder{
   position: fixed;
   margin-left: 30vw;
