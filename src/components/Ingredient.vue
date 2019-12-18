@@ -2,8 +2,6 @@
   <div class="ingredient">
     <div id="orderButtons">
       {{item["ingredient_"+ lang]}}
-      <!-- <img v-show="item.gluten_free===1">
-      <img v-show="item.vegan===1"><br>  -->
       <br>
       {{item.selling_price}} kr {{checkIfOut(item.stock)}}
       <br>
@@ -17,6 +15,8 @@
   </div>
 </template>
 <script>
+
+
 export default {
   name: 'Ingredient',
   props: {
@@ -31,7 +31,7 @@ export default {
   methods: {
     checkIfOut:function(stock){
         if(stock<1){
-          return "OUT";
+          return this.uiLabels.out;
         }
         else{
           return "";
