@@ -24,7 +24,7 @@
   "previous" : "Previous",
   "number" : "no.",
   "choose" : "Choose",
-  "arrayOfLabels" : ["Patty", "Toppings", "Sauce", "Bread", "Sides","Drink"],
+  "arrayOfLabels" : ["Patty", "Toppings", "Sauce", "Bread", "Sides","Drinks"],
   "orderSummary" : "Order summary",
   "myOrder" : "My order",
   "menu" :"Menu",
@@ -33,5 +33,8 @@
   "buildBurger" : "Build your burger",
   "welcome" : "Welcome to Craft burger",
   "totalPrice": "Your total price: ",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "thankOrder": "Thank you for ordering!"
+
+
 }
