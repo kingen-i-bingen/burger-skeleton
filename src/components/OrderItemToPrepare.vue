@@ -7,7 +7,7 @@
     :order-id="orderId"
     :order="order">
   </OrderItem>
-  <button v-on:click="orderDone">
+  <button id="donebutton" v-on:click="orderDone">
     {{uiLabels.ready}}
   </button>
 </div>
@@ -37,5 +37,17 @@ export default {
 }
 </script>
 <style scoped>
+
+#donebutton {
+font-size: 16pt;
+border-radius: 30px;
+background-color: #98FB98;
+opacity: 80%;
+
+}
+
+#donebutton:hover{
+  background-color: lightgreen;
+}
 
 </style>

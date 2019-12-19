@@ -42,4 +42,14 @@ export default {
 </script>
 <style scoped>
 
+#FinishButton {
+font-size: 16pt;
+border-radius: 30px;
+background-color: #98FB98;
+opacity: 80%;
+}
+
+#FinishButton:hover{
+  background-color: lightgreen;
+}
 </style>

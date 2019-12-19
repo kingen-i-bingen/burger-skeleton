@@ -5,9 +5,9 @@
      <h1> {{uiLabels.ordersSummary}}</h1>
      <div v-for="countIng in countAllIngredients"
            v-if="countIng.count>0"
-           :key="countAllIngredients.indexOf(countIng)">
-           {{countIng.name}}: {{countIng.count}}
-          <button v-on:click="setOneDone(countIng)">One done </button>
+           :key="countAllIngredients.indexOf(countIng)"> <br>
+           {{countIng.name}}: {{countIng.count}} <br> <br>
+            <button id="OneDoneButton" v-on:click="setOneDone(countIng)"> -1 </button>
    </div>
   </div>
 
@@ -39,6 +39,7 @@
       :lang="lang"
       :ui-labels="uiLabels"
       :key="key">
+
     </OrderItemFinished>
 
   </div>
@@ -127,81 +128,101 @@ export default {
 
 
 	#orders {     /* wrapper*/
-    font-size:16pt;
+    font-size:18pt;
     display:grid;
     grid-gap:1px;
     grid-template-columns:33vw 33vw 33vw;
-    background-color: lightblue;
-
 
     height: 96vh;
-
     width: 99vw;
+
     /* padding-left: 0.5vw; */
-
-
-
-
-
   }
 
 
 #ordersQueue{
 grid-column:1;
 grid-row: 1;
-border: 5px solid #ff9900;
+border: 5px solid;
+border-radius: 10px;
 overflow: auto;
 margin:3px;
+text-align: center;
+
 
   }
 
 #ordersQueue h1{
   text-transform: uppercase;
-  font-size: 1.4em;
-
+  font-size: 24pt;
   /* border:solid;
   border-radius:3vw; */
-  text-align: center;
+text-align: center;
 
 }
+
+
+
 
   #summaryOrder {
 grid-column: 2;
 grid-row: 1;
-border: 5px solid #ff9900;
+border: 5px solid;
+border-radius: 10px;
 overflow: auto;
 margin:3px;
+text-align: center;
+
   }
 
 #summaryOrder h1 {
   text-transform: uppercase;
-  font-size: 1.4em;
+  font-size: 24pt;
   /* border:solid;
   border-radius:10vw; */
-  text-align: center;
 
+  text-align: center;
+}
+
+#summaryOrder button {
+  background-color: #98FB98;
+  opacity: 80%;
+
+  font-size: 26pt;
+  border-radius: 30px;
+
+}
+
+#summaryOrder button:hover{
+  background-color: lightgreen;
 
 }
 
   #finishedOrder{
 grid-column:3;
 grid-row: 1;
-border: 5px solid #ff9900;
+border: 5px solid;
+border-radius: 10px;
 overflow: auto;
 margin:3px;
+text-align:center;
   }
 
 #finishedOrder h1{
   text-transform: uppercase;
-  font-size: 1.4em;
+  font-size: 24pt;
   text-align: center;
-
   /* border-bottom: solid 1px black; */
   /* border:solid;
   border-radius:3vw; */
-
-
 }
+
+/* #OneDoneButton {
+position:absolute;
+right:35vw;
+overflow: auto;
+
+} */
 
 
 
