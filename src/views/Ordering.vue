@@ -71,7 +71,7 @@
         <span id="differentMenus">{{uiLabels.menu}} {{burger.number+1}}</span>
         <label>
         <button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">{{uiLabels.change}}</button>
-        <img id = "changePic" src="@/assets/change.jpg" width="15px" height="13px">
+        <img id = "changePic" src="@/assets/edit_pen.png" width="15px" height="13px">
       </label><br>
         <br>
             <div v-for="chosen in burger.burgerIngredients" :key="burger.burgerIngredients.indexOf(chosen)">
@@ -129,7 +129,7 @@ export default {
     }
   },
   beforeRouteLeave (to, from, next) {
-			this.$dialog.confirm('Do you want to proceed?')
+			this.$dialog.confirm('Do you want to cancel? Your order will be lost!')
 			.then(function () {
 				next();
 			})
@@ -377,6 +377,9 @@ h1{
 #header button:hover{
   cursor:pointer;
   transform:scale(1.1);
+}
+#header button:active {
+    transform:scale(1);
 }
 #category{
   text-align: center;
@@ -681,7 +684,7 @@ grid-gap: 2em;
     border: 3px solid #ccd;
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
-    min-height: 59vh;
+    min-height: 69vh;
 }
 
 #orderBoxes{
@@ -808,9 +811,11 @@ transform:scale(1.1);
 
 
 #thankYouOrder{
-  position: fixed;
-  margin-left: 30vw;
-  margin-top: 32vh;
+
+    text-align: center;
+    position:relative;
+    top: 12vh;
+    font-size: 52pt;
 }
 
 #changePic{
