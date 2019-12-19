@@ -10,7 +10,7 @@
       <br>
       <img src="@/assets/milk_free.png" v-show="item.milk_free===1" height="20em" width="20em">
       <img src="@/assets/gluten_free.png" v-show="item.gluten_free===1" height="20em" width="20em">
-      <img src="@/assets/vegan1.png" v-show="item.vegan===1" height="20em" width="20em">
+      <img src="@/assets/vegan2.svg" v-show="item.vegan===1" height="20em" width="20em">
     </div>
   </div>
 </template>

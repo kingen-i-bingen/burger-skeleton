@@ -2,7 +2,7 @@
   <body>
   <div id="ordering">
     <header id="header">
-        <!-- <img class="example-panel" src="@/assets/exampleImage.jpg"> -->
+        <img class="bg" src="@/assets/background_burg.png">
         <button id="langButton" v-on:click="switchLang()">
           <img id="langPic" v-if="flag_en" src="@/assets/englishFlag.webp" width="30px" height="20px">
           <img id="langPic" v-if="flag_sv" src="@/assets/swedishFlag.png" width="30px" height="20px">
@@ -17,12 +17,12 @@
 
       <div class="tabs">
         <button class="tablinks" v-on:click="changeCategory(1, 'tab1')" :class="{active: activeTab === 'tab1' }"
-        v-bind:style=" checkCategory(1) ? 'border: 2px solid green; border-bottom: none; color: green' : 'color: black' ">{{ uiLabels.arrayOfLabels[0]}}</button>
-        <button class="tablinks" v-on:click="changeCategory(2, 'tab2')" :class="{active: activeTab === 'tab2' }" v-bind:style=" checkCategory(2) ? 'border: 2px solid green; border-bottom: none; color: green' : 'color: black' ">{{ uiLabels.arrayOfLabels[1] }}</button>
-        <button class="tablinks" v-on:click="changeCategory(3, 'tab3')" :class="{active: activeTab === 'tab3' }" v-bind:style=" checkCategory(3) ? 'border: 2px solid green; border-bottom: none; color: green' : 'color: black' ">{{ uiLabels.arrayOfLabels[2] }}</button>
-        <button class="tablinks" v-on:click="changeCategory(4, 'tab4')" :class="{active: activeTab === 'tab4' }" v-bind:style=" checkCategory(4) ? 'border: 2px solid green; border-bottom: none; color: green' : 'color: black' ">{{ uiLabels.arrayOfLabels[3] }}</button>
-        <button class="tablinks" v-on:click="changeCategory(5, 'tab5')" :class="{active: activeTab === 'tab5' }" v-bind:style=" checkCategory(5) ? 'border: 2px solid green; border-bottom: none; color: green' : 'color: black' ">{{ uiLabels.arrayOfLabels[4] }}</button>
-        <button class="tablinks" v-on:click="changeCategory(6, 'tab6')" :class="{active: activeTab === 'tab6' }" v-bind:style=" checkCategory(6) ? 'border: 2px solid green; border-bottom: none; color: green' : 'color: black' ">{{ uiLabels.arrayOfLabels[5] }}</button>
+        v-bind:style=" checkCategory(1) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[0]}}</button>
+        <button class="tablinks" v-on:click="changeCategory(2, 'tab2')" :class="{active: activeTab === 'tab2' }" v-bind:style=" checkCategory(2) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[1] }}</button>
+        <button class="tablinks" v-on:click="changeCategory(3, 'tab3')" :class="{active: activeTab === 'tab3' }" v-bind:style=" checkCategory(3) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[2] }}</button>
+        <button class="tablinks" v-on:click="changeCategory(4, 'tab4')" :class="{active: activeTab === 'tab4' }" v-bind:style=" checkCategory(4) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[3] }}</button>
+        <button class="tablinks" v-on:click="changeCategory(5, 'tab5')" :class="{active: activeTab === 'tab5' }" v-bind:style=" checkCategory(5) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[4] }}</button>
+        <button class="tablinks" v-on:click="changeCategory(6, 'tab6')" :class="{active: activeTab === 'tab6' }" v-bind:style=" checkCategory(6) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[5] }}</button>
       </div>
 
       <div class="Box a">
@@ -64,7 +64,6 @@
         </div>
   </div>
   <div id="orderScreen" v-show="category === 7">
-      <button class="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1">{{uiLabels.previous}}</button>
       <div id="orderMenu">
         <div id= "orderBoxes">
         <div v-for="burger in countAllIngredientsInAllBurgers" id="differentBurgersBox" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
@@ -343,15 +342,26 @@ export default {
 }
 </script>
 <style scoped>
+    @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed|Shadows+Into+Light&display=swap');
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 #ordering {
   margin: 0em 2vw;
   /* margin:auto; */
   /* width: 40em; */
 }
+.bg {
+    position: fixed;
+    z-index: -2;
+    opacity: 20%;
+    top: -6vh;
+
+
+}
 
 body{
-font-family: helvetica;
+    font-family: 'Roboto Condensed', sans-serif;
+    color:white;
+
 
 }
 
@@ -402,7 +412,7 @@ position: fixed;
 }
 
 .OrderSummary {
-    background-color: #4CAF50; /* Green */
+    background-color: #006400; /* Green */
     height: 9vh;
     width: 15vw;
     position: relative;
@@ -449,7 +459,7 @@ position: fixed;
 }
 
 .NextButton:disabled{
-    opacity: 50%;
+    opacity: 20%;
     pointer-events: none;
 }
 
@@ -484,13 +494,9 @@ position: fixed;
   opacity: 1;
   left: 0;
 }
-.Previousbutton:active {
-  box-shadow: 0 7px 10px 0 rgba(0,0,0,0.24), 0 12px 30px 0 rgba(0,0,0,0.19);
-  transform:scale(1.05);
-}
 
 .PreviousButton:disabled{
-  opacity: 50%;
+  opacity: 20%;
   pointer-events: none;
 }
 
@@ -533,15 +539,15 @@ position: fixed;
 
 .tablinks {
   float: left;
-  border-width: 0.1em;
-  border-color: darkgray;
+  border-width: 0.2em;
+  border-color: whitesmoke;
   border-top-left-radius: 1em;
   border-top-right-radius: 1em;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
-  background-color: #ddd;
+  background-color: inherit;
   width: 8vw;
 
 
@@ -551,7 +557,8 @@ position: fixed;
 
   transform:scale(1.05);
   box-shadow:1px 1px 3px rgba(0,0,0,0.5);
-  background-color: white;
+  background-color: rgb(60, 60, 60);;
+    border-bottom: none;
 }
 
 .active {
@@ -571,6 +578,7 @@ grid-gap: 2em;
   grid-column: 1;
   grid-row: 2;
   padding-left: 8vw;
+
 
 }
 .a{
@@ -603,6 +611,8 @@ grid-gap: 2em;
   grid-row: 1 / span 3;
   text-align: center;
   overflow-y: auto;
+  background-color: #d9d9d9;
+  color: black;
 }
 
 
@@ -610,12 +620,12 @@ grid-gap: 2em;
     position: fixed;
     right: 2vw;
     border: 3px solid #ccd;
-    border-top: none;
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
     height: 15vh;
     width: 25vw;
     top:80vh;
+    background-color: #d9d9d9;
 }
 
 #summaryContent {
@@ -632,7 +642,8 @@ grid-gap: 2em;
   border: 1px solid #ccd;
   padding: 1em 0em 1em 0em;
   /*background-image: url('~@/assets/exampleImage.jpg');*/
-  background-color: #D5DCD1;
+  background-color: #d9d9d9;
+    opacity: 90%;
   color: black;
   font-weight: bold;
   border-radius: 1em;
@@ -670,7 +681,7 @@ grid-gap: 2em;
     border: 3px solid #ccd;
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
-    min-height: 64vh;
+    min-height: 59vh;
 }
 
 #orderBoxes{
@@ -703,7 +714,7 @@ font-size: 20px;
 font-weight: bold;
 border-radius: 8px;
 position: fixed;
-top: 81vh;
+top: 80vh;
 right: 1.5vw;
 opacity: 0.9;
 }
@@ -768,6 +779,7 @@ transform:scale(1.1);
 }
 #changeBurgerButton{
   font-size: 16px;
+    color: white;
    background-color: transparent;
    text-decoration: underline;
    border: none;
@@ -808,13 +820,14 @@ transform:scale(1.1);
 
 
 #langButton{
-  position: absolute;
+  position: fixed;
   top:30px;
   right:50px;
   padding:0;
   margin:0;
   background: transparent;
   border: transparent;
+
 }
 
 
@@ -822,7 +835,7 @@ transform:scale(1.1);
   height: 100%;
 }
 #cancelOrder{
-  position: absolute;
+  position: fixed;
   top:30px;
   padding:0;
   margin:0;

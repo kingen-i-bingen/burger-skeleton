@@ -17,6 +17,6 @@ export default {
 
 <style>
   html {
-    background-color: whitesmoke;
+    background-color: rgb(44, 44, 44);
   }
 </style>
