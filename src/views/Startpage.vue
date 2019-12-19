@@ -58,7 +58,7 @@ export default {
   color: white;
   font-family: 'Shadows Into Light', cursive;  font-weight: lighter;
 }
-#starthead h1 {
+#startHead{
   text-align:center;
   font-size: 5em;
   font-weight: lighter;
