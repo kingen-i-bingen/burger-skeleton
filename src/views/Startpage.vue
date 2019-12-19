@@ -1,15 +1,16 @@
 <template>
-  <div class="startpage">
-    <header id="header">
-      <button id="langButton" v-on:click="switchLang()">
-        <img class="langPic" v-if="flag_en" src="@/assets/englishFlag.webp" width="30px" height="20px">
-        <img class="langPic" v-if="flag_sv" src="@/assets/swedishFlag.png" width="30px" height="20px">
-      </button>
-    <h1 id="startHead"> {{uiLabels.welcome}} </h1>
-  </header>
-    <button class="BuildButton" @click="$router.push({ path: '/ordering'})"> {{uiLabels.buildBurger}} </button>
-</div>
+    <div class="startpage">
 
+          <button id="langButton" v-on:click="switchLang()">
+            <img class="langPic" v-if="flag_en" src="@/assets/englishFlag.webp" width="30px" height="20px">
+            <img class="langPic" v-if="flag_sv" src="@/assets/swedishFlag.png" width="30px" height="20px">
+          </button>
+
+          <h1 id="startHead"> {{uiLabels.welcome}} </h1>
+        <button class="BuildButton" @click="$router.push({ path: '/ordering'})"> {{uiLabels.buildBurger}} </button>
+    </div>
+</div>
+</body>
 </template>
 
 <script>
@@ -41,35 +42,63 @@ export default {
 }
 </script>
 <style>
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap');
+
 
 
 
 .startpage {
+<<<<<<< Updated upstream
 font-family: helvetica;
 font-weight: lighter;
 background-image: url('~@/assets/Burgerlogga.png') ;
+=======
+  background-color: rgb(38, 38, 38);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  font-family: 'Shadows Into Light', cursive;  font-weight: lighter;
+  font-size: 24px;
+>>>>>>> Stashed changes
 }
 h1 {
-  font-size: 3em;
+  font-size: 4em;
+  font-weight: lighter;
 }
 
 #startHead {
   text-align: center;
+  padding:0;
+  margin: 0;
+  border: 0;
+  position: fixed;
+  top: 20vh;
+  left:13vw;
+  color: lightgray;
+
+
 }
 
 .BuildButton{
   border: none;
-  color: black;
+  color: white;
   padding: 5vh 5vh;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 35px;
   border-radius: 8px;
-  top: 45%;
+  top: 55%;
   left:37%;
   position: fixed;
+  background: transparent;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
 }
+
 .BuildButton:hover{
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     cursor:pointer;
@@ -78,6 +107,8 @@ h1 {
 .langPic{
   height: 100%;
 }
+
+
 
 #langButton{
   position: absolute;
@@ -88,5 +119,7 @@ h1 {
   background: transparent;
   border: transparent;
 }
+
+/* url('~@/assets/burgback.jpg') ; */
 
 </style>
