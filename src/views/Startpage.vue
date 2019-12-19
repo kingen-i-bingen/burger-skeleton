@@ -42,9 +42,12 @@ export default {
 </script>
 <style>
 
+
+
 .startpage {
 font-family: helvetica;
 font-weight: lighter;
+background-image: url('~@/assets/Burgerlogga.png') ;
 }
 h1 {
   font-size: 3em;
