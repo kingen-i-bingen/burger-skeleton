@@ -129,14 +129,15 @@ export default {
 
 	#orders {     /* wrapper*/
     font-size:18pt;
+    font-family: 'Roboto Condensed', sans-serif;
     display:grid;
     grid-gap:1px;
     grid-template-columns:33vw 33vw 33vw;
-
     height: 96vh;
     width: 99vw;
+    background-color: rgb(44,44,44);
+    color: rgb(242, 242, 242);
 
-    /* padding-left: 0.5vw; */
   }
 
 
@@ -155,9 +156,9 @@ text-align: center;
 #ordersQueue h1{
   text-transform: uppercase;
   font-size: 24pt;
-  /* border:solid;
-  border-radius:3vw; */
-text-align: center;
+  font-weight:bold;
+  text-align: center;
+  border-bottom: solid 0.4vw;
 
 }
 
@@ -178,18 +179,21 @@ text-align: center;
 #summaryOrder h1 {
   text-transform: uppercase;
   font-size: 24pt;
-  /* border:solid;
-  border-radius:10vw; */
-
+  font-weight:bold;
+  border-bottom: solid 0.4vw;
   text-align: center;
 }
 
 #summaryOrder button {
-  background-color: #98FB98;
-  opacity: 80%;
-
   font-size: 26pt;
   border-radius: 30px;
+  /* background-color: #98FB98; */
+  background-color:rgb(240, 245, 245);
+  border-color:rgb(51, 51, 204);
+  border-width:0.5vw;
+  color:rgb(0, 102, 34);
+  font-weight: bolder;
+
 
 }
 
@@ -211,7 +215,9 @@ text-align:center;
 #finishedOrder h1{
   text-transform: uppercase;
   font-size: 24pt;
+  font-weight:bold;
   text-align: center;
+  border-bottom: solid 0.4vw;
   /* border-bottom: solid 1px black; */
   /* border:solid;
   border-radius:3vw; */

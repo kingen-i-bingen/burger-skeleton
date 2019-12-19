@@ -39,10 +39,14 @@ export default {
 <style scoped>
 
 #donebutton {
-font-size: 16pt;
+font-size: 18pt;
 border-radius: 30px;
-background-color: #98FB98;
-opacity: 80%;
+/* background-color: #98FB98; */
+background-color:rgb(240, 245, 245);
+border-color:rgb(0, 230, 77);
+border-width:0.5vw;
+color:rgb(0, 102, 34);
+font-weight: bolder;
 
 }
 
