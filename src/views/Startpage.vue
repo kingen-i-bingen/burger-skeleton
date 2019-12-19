@@ -57,23 +57,21 @@ export default {
   width: 99vw;
   color: white;
   font-family: 'Shadows Into Light', cursive;  font-weight: lighter;
-  font-size: 1.5em;
 }
 h1 {
-  font-size: 4em;
+  font-size: 5em;
   font-weight: lighter;
-}
 
-#startHead {
+
+
   text-align: center;
   padding:0;
   margin: 0;
   border: 0;
   position: fixed;
   top: 25vh;
-  left:16vw;
+  left:22vw;
   color: lightgray;
-
 
 }
 
@@ -88,7 +86,7 @@ h1 {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 35px;
   border-radius: 8px;
-  top: 63%;
+  top: 60%;
   left:39%;
   position: fixed;
   background: transparent;
