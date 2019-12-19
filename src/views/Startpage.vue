@@ -53,8 +53,8 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
-  width: 100vw;
+  height: 98vh;
+  width: 99vw;
   color: white;
   font-family: 'Shadows Into Light', cursive;  font-weight: lighter;
   font-size: 24px;
@@ -71,7 +71,7 @@ h1 {
   border: 0;
   position: fixed;
   top: 25vh;
-  left:13vw;
+  left:16vw;
   color: lightgray;
 
 
