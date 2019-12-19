@@ -7,6 +7,8 @@
           </button>
 
           <h1 id="startHead"> {{uiLabels.welcome}} </h1>
+          <img class="logPic"  src="@/assets/burglog.png" width="150vw" height="150vh">
+
         <button class="BuildButton" @click="$router.push({ path: '/ordering'})"> {{uiLabels.buildBurger}} </button>
     </div>
 </div>
@@ -42,17 +44,11 @@ export default {
 }
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed|Shadows+Into+Light&display=swap');
 
 
 
 .startpage {
-<<<<<<< Updated upstream
-font-family: helvetica;
-font-weight: lighter;
-background-image: url('~@/assets/Burgerlogga.png') ;
-=======
   background-color: rgb(38, 38, 38);
   background-position: center;
   background-repeat: no-repeat;
@@ -62,7 +58,6 @@ background-image: url('~@/assets/Burgerlogga.png') ;
   color: white;
   font-family: 'Shadows Into Light', cursive;  font-weight: lighter;
   font-size: 24px;
->>>>>>> Stashed changes
 }
 h1 {
   font-size: 4em;
@@ -75,7 +70,7 @@ h1 {
   margin: 0;
   border: 0;
   position: fixed;
-  top: 20vh;
+  top: 25vh;
   left:13vw;
   color: lightgray;
 
@@ -89,10 +84,12 @@ h1 {
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  color: lightgray;
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 35px;
   border-radius: 8px;
-  top: 55%;
-  left:37%;
+  top: 63%;
+  left:39%;
   position: fixed;
   background: transparent;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
@@ -108,6 +105,12 @@ h1 {
   height: 100%;
 }
 
+.logPic{
+  position: fixed;
+  top: 5vh;
+  left: 3vw;
+  transform: rotate(-10deg);
+}
 
 
 #langButton{
@@ -120,6 +123,6 @@ h1 {
   border: transparent;
 }
 
-/* url('~@/assets/burgback.jpg') ; */
+/* url('~@/assets/burgback.jpg') ; carambi */
 
 </style>
