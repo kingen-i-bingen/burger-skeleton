@@ -62,8 +62,7 @@ h1 {
   text-align:center;
   font-size: 5em;
   font-weight: lighter;
-  padding:0;
-  padding-top: 20vh;
+  padding-top: 25vh;
   border: 0;
   margin:0;
   top: 40vh;
