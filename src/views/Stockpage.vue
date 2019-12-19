@@ -1,5 +1,5 @@
 <template>
-<body>
+<body id="stockpage">
 <h1>{{uiLabels.stockPage}}</h1>
 <button id="langButton" v-on:click="switchLang()">
   <img id="langPic" v-if="flag_en" src="@/assets/englishFlag.webp" width="30px" height="20px">
@@ -60,9 +60,17 @@ export default {
 </script>
 
 <style>
-body{
+#stockpage{
   font-family: helvetica;
+  background-color: rgb(44,44,44);
 }
+#stockpage h1{
+  text-align:center;
+  margin: 0px;
+  padding: 0.5em;
+  color: whitesmoke;
+}
+
 #langButton{
   position: absolute;
   top:30px;
@@ -77,9 +85,6 @@ body{
 #langPic{
   height: 100%;
 }
-h1{
-  text-align:center;
-}
 #stock{
   display: grid;
   grid-template-columns: repeat(auto-fill,15em);
@@ -89,7 +94,7 @@ h1{
 .ingredients{
   border: 1px solid #ccd;
   padding: 1em 0em 1em 0em;
-  background-color: #D5DCD1;
+  background-color: whitesmoke;
   color: black;
   font-weight: bold;
   border-radius: 1em;
