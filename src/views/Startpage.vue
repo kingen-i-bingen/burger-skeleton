@@ -57,7 +57,7 @@ export default {
   width: 99vw;
   color: white;
   font-family: 'Shadows Into Light', cursive;  font-weight: lighter;
-  font-size: 24px;
+  font-size: 1.5em;
 }
 h1 {
   font-size: 4em;
