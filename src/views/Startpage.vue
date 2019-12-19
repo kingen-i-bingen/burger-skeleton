@@ -11,7 +11,7 @@
 
         <button class="BuildButton" @click="$router.push({ path: '/ordering'})"> {{uiLabels.buildBurger}} </button>
     </div>
-</div>
+
 </body>
 </template>
 
@@ -49,12 +49,12 @@ export default {
 
 
 .startpage {
-  background-color: rgb(38, 38, 38);
+  background-color: rgb(44, 44, 44);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 98vh;
-  width: 99vw;
+  /* height: 98vh;
+  width: 99vw; */
   color: white;
   font-family: 'Shadows Into Light', cursive;  font-weight: lighter;
 }
