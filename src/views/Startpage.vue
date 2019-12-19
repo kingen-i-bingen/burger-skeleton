@@ -59,18 +59,18 @@ export default {
   font-family: 'Shadows Into Light', cursive;  font-weight: lighter;
 }
 h1 {
+  text-align:center;
   font-size: 5em;
   font-weight: lighter;
-
-
-
-  text-align: center;
   padding:0;
-  margin: 0;
+  padding-top: 20vh;
   border: 0;
-  position: fixed;
-  top: 25vh;
-  left:22vw;
+  margin:0;
+  top: 40vh;
+
+  /* position: fixed;
+  left:22vw;*/
+
   color: lightgray;
 
 }
