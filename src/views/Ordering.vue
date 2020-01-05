@@ -1,98 +1,124 @@
 <template>
   <body>
-  <div id="ordering">
-    <header id="header">
-        <img class="bg" src="@/assets/background_burg.png">
-        <button id="langButton" v-on:click="switchLang()">
-          <img id="langPic" v-if="flag_en" src="@/assets/englishFlag.webp" width="30px" height="20px">
-          <img id="langPic" v-if="flag_sv" src="@/assets/swedishFlag.png" width="30px" height="20px">
-        </button>
-        <button id="cancelOrder" @click="$router.push({ path: '/'})">
-          <img id="CancelSym" src="@/assets/cancel-icon.png" width="40px" height="40px">
-        </button>
-        <h1 v-show="category === 7">{{ uiLabels.myOrder }}</h1>
-    </header>
-    <div class="wrapper" v-show="category !== 7 && category !== 8">
-      <h1 id="category"> {{uiLabels.choose}} {{ arrayOfLabels }}</h1>
+      <div id="ordering">
+        <header id="header">
+            <img class="bg" src="@/assets/background_burg.png">
+            <button id="langButton" v-on:click="switchLang()">
+              <img id="langPic" v-if="flag_en" src="@/assets/englishFlag.webp" width="50px" height="20px">
+              <img id="langPic" v-if="flag_sv" src="@/assets/swedishFlag.png" width="50px" height="20px">
+            </button>
+            <button id="cancelOrder" @click="$router.push({ path: '/'})">
+              <img id="CancelSym" src="@/assets/cancel-icon.png" width="40px" height="40px">
+            </button>
+            <h1 v-show="category === 7">{{ uiLabels.myOrder }}</h1>
 
-      <div class="tabs">
-        <button class="tablinks" v-on:click="changeCategory(1, 'tab1')" :class="{active: activeTab === 'tab1' }"
-        v-bind:style=" checkCategory(1) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[0]}}</button>
-        <button class="tablinks" v-on:click="changeCategory(2, 'tab2')" :class="{active: activeTab === 'tab2' }" v-bind:style=" checkCategory(2) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[1] }}</button>
-        <button class="tablinks" v-on:click="changeCategory(3, 'tab3')" :class="{active: activeTab === 'tab3' }" v-bind:style=" checkCategory(3) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[2] }}</button>
-        <button class="tablinks" v-on:click="changeCategory(4, 'tab4')" :class="{active: activeTab === 'tab4' }" v-bind:style=" checkCategory(4) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[3] }}</button>
-        <button class="tablinks" v-on:click="changeCategory(5, 'tab5')" :class="{active: activeTab === 'tab5' }" v-bind:style=" checkCategory(5) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[4] }}</button>
-        <button class="tablinks" v-on:click="changeCategory(6, 'tab6')" :class="{active: activeTab === 'tab6' }" v-bind:style=" checkCategory(6) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[5] }}</button>
-      </div>
+            <div id="allergies" v-show="category !== 7 && category !== 8">
+                <img src="@/assets/milk_free.png" height="20em" width="20em"> Milk free<br>
+                <img src="@/assets/gluten_free.png" height="20em" width="20em"> Gluten free<br>
+                <img src="@/assets/vegan2.svg" height="20em" width="20em"> Vegan
+            </div>
+        </header>
+        <div class="wrapper" v-show="category !== 7 && category !== 8">
+          <h1 id="category"> {{uiLabels.choose}} {{ arrayOfLabels }}</h1>
 
-      <div class="Box a">
-          <Ingredient
-          ref="ingredient"
-          v-for="item in ingredients"
-          v-show="item.category===category"
-          v-on:increment="addToOrder(item)"
-          v-on:remove="removeFromOrder(item)"
-          :item="item"
-          :lang="lang"
-          :key="item.ingredient_id"
-          v-bind:style=" chosenIngredients.includes(item) ? 'border: 2px solid green; box-shadow: 0 1px 4px 0 green, 0 2px 5px 0 green;' : 'border: 2px solid #ccd;' ">
-          </Ingredient>
-        </div>
-        <div class="Box b">
-          <button class="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1"><span>{{uiLabels.previous}}</span></button>
-          <button class="NextButton" v-on:click="nextCategory()" :disabled="category===6"><span>{{uiLabels.next}}</span></button>
-        </div>
-      <div class="Box c">
-  <h1>{{uiLabels.menu}} {{uiLabels.number}} {{burgerNumber+1}}</h1>
-    <div id= "priset">
-      {{uiLabels.menuPrice}}: {{ price }} kr
-    </div>
-    <br>
-    <div id="summaryContent" v-for="chosen in countAllIngredients" :key="countAllIngredients.indexOf(chosen)">
-        <button class="modifyOrder" v-on:click="summaryRemove(chosen)">-</button>
-        {{ chosen.count }}
-        <button class="modifyOrder" v-on:click="summaryAdd(chosen)">+</button>
-        {{chosen.name}} {{chosen.itemPrice*chosen.count}} kr<br>
-    </div>
-    </div>
+          <div class="tabs">
+            <button class="tablinks" v-on:click="changeCategory(1, 'tab1')" :class="{active: activeTab === 'tab1' }" v-bind:style=" checkCategory(1) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[0]}}</button>
+            <button class="tablinks" v-on:click="changeCategory(2, 'tab2')" :class="{active: activeTab === 'tab2' }" v-bind:style=" checkCategory(2) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[1] }}</button>
+            <button class="tablinks" v-on:click="changeCategory(3, 'tab3')" :class="{active: activeTab === 'tab3' }" v-bind:style=" checkCategory(3) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[2] }}</button>
+            <button class="tablinks" v-on:click="changeCategory(4, 'tab4')" :class="{active: activeTab === 'tab4' }" v-bind:style=" checkCategory(4) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[3] }}</button>
+            <button class="tablinks" v-on:click="changeCategory(5, 'tab5')" :class="{active: activeTab === 'tab5' }" v-bind:style=" checkCategory(5) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[4] }}</button>
+            <button class="tablinks" v-on:click="changeCategory(6, 'tab6')" :class="{active: activeTab === 'tab6' }" v-bind:style=" checkCategory(6) ? 'color: green; font-weight:bold;' : 'color: white' ">{{ uiLabels.arrayOfLabels[5] }}</button>
+          </div>
 
-        <div class="Box d">
+          <div class="Box a">
+              <Ingredient
+              ref="ingredient"
+              v-for="item in ingredients"
+              v-show="item.category===category"
+              v-on:increment="addToOrder(item)"
+              v-on:remove="removeFromOrder(item)"
+              :item="item"
+              :lang="lang"
+              :key="item.ingredient_id"
+              v-bind:style=" chosenIngredients.includes(item) ? 'border: 4px solid green; box-shadow: 0 1px 4px 0 green, 0 2px 5px 0 green;' : 'border: 4px solid #ccd;' ">
+              </Ingredient>
+          </div>
+
+          <div class="Box b">
+            <button class="PreviousButton" v-on:click="previousCategory()" :disabled="category === 1">
+                <span>{{uiLabels.previous}}</span>
+            </button>
+
+            <button class="NextButton" v-on:click="nextCategory()" :disabled="category===6">
+                <span>{{uiLabels.next}}</span>
+            </button>
+          </div>
+
+          <div class="Box c">
+            <h1>
+                {{uiLabels.menu}} {{uiLabels.number}} {{burgerNumber+1}}
+            </h1>
+            <div id= "priset">
+              {{uiLabels.menuPrice}}: {{ price }} kr
+            </div>
+            <br>
+            <div id="summaryContent" v-for="chosen in countAllIngredients" :key="countAllIngredients.indexOf(chosen)">
+                <button class="modifyOrder" v-on:click="summaryRemove(chosen)">
+                    -
+                </button>
+                {{ chosen.count }}
+                <button class="modifyOrder" v-on:click="summaryAdd(chosen)">
+                    +
+                </button>
+                {{chosen.name}} {{chosen.itemPrice*chosen.count}} kr<br>
+            </div>
+          </div>
+
+          <div class="Box d">
             <div class="Box b">
                 <button class="OrderSummary" v-on:click="toSummary()" >{{uiLabels.orderSummary}} {{price}} kr</button>
             </div>
+          </div>
 
         </div>
-  </div>
-  <div id="orderScreen" v-show="category === 7">
-      <div id="orderMenu">
-        <div id= "orderBoxes">
-        <div v-for="burger in countAllIngredientsInAllBurgers" id="differentBurgersBox" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
-            <button id="removeOrder" v-on:click="removeOrder(burger.number)">X</button>
-        <span id="differentMenus">{{uiLabels.menu}} {{burger.number+1}}</span>
-        <label>
-        <button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">{{uiLabels.change}}</button>
-        <img id = "changePic" src="@/assets/edit_pen.png" width="15px" height="13px">
-      </label><br>
-        <br>
-            <div v-for="chosen in burger.burgerIngredients" :key="burger.burgerIngredients.indexOf(chosen)">
-            {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice}}:-<br>
-            </div>
-        <h4>Price: {{burger.burgerPrice}} kr</h4>
-      </div>
-      </div>
 
-  </div>
-      <div id= "totalpris">
-          {{uiLabels.totalPrice}}{{totalPrice()}} kr
+        <div id="orderScreen" v-show="category === 7">
+          <div id="orderMenu">
+            <div id= "orderBoxes">
+              <div v-for="burger in countAllIngredientsInAllBurgers" id="differentBurgersBox" :key="countAllIngredientsInAllBurgers.indexOf(burger)">
+                <button id="removeOrder" v-on:click="removeOrder(burger.number)">
+                    X
+                </button>
+                <span id="differentMenus">
+                    {{uiLabels.menu}} {{burger.number+1}}
+                </span>
+                <label>
+                    <button id="changeBurgerButton" v-on:click="changeBurger(burger.number)">{{uiLabels.change}}</button>
+                    <img id = "changePic" src="@/assets/edit_pen.png" width="15px" height="13px">
+                </label><br>
+                <br>
+                <div v-for="chosen in burger.burgerIngredients" :key="burger.burgerIngredients.indexOf(chosen)">
+                    {{ chosen.count }}x  {{chosen.name}} {{chosen.itemPrice}}:-<br>
+                </div>
+                <h4>Price: {{burger.burgerPrice}} kr</h4>
+              </div>
+            </div>
+
+          </div>
+          <div id= "totalpris">
+              {{uiLabels.totalPrice}}{{totalPrice()}} kr
+          </div>
+          <button id="placeOrderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }} {{totalPrice()}} kr </button>
+          <button id="newBurgerButton" v-on:click="addAnotherBurger()"> {{uiLabels.newMenu}} </button>
+        </div>
+        <div v-show="category === 8">
+            <h1 id="thankYouOrder"> {{uiLabels.thankOrder}} </h1>
+        </div>
+
       </div>
-  <button id="placeOrderButton" v-on:click="placeOrder()">{{ uiLabels.placeOrder }} {{totalPrice()}} kr </button>
-  <button id="newBurgerButton" v-on:click="addAnotherBurger()"> {{uiLabels.newMenu}} </button>
-  </div>
-  <div v-show="category === 8">
-    <h1 id="thankYouOrder"> {{uiLabels.thankOrder}} </h1>
-  </div>
-</div>
-</body>
+  </body>
+
+
 </template>
 <script>
 
@@ -396,7 +422,7 @@ h1{
 }
 
 .NextButton {
-background-color: mediumblue; /* Green */
+background-color: #4682B4; /* Green */
 height: 7vh;
 width: 12vw;
 right: 29vw;
@@ -652,6 +678,7 @@ grid-gap: 2em;
   border-radius: 1em;
   text-align: center;
 }
+
 #priset{
   font-size: 22px;
 }
@@ -833,6 +860,17 @@ transform:scale(1.1);
   background: transparent;
   border: transparent;
 
+}
+
+#allergies {
+    position: fixed;
+    top: 3vh;
+    right: 30vw;
+    background-color: #d9d9d9;
+    color: black;
+    padding: 0.3em;
+    border: 1px solid black;
+    border-radius: 0.8em;
 }
 
 

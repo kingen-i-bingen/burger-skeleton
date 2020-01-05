@@ -1,7 +1,7 @@
 <template>
   <div class="ingredient">
     <div id="orderButtons">
-      {{item["ingredient_"+ lang]}}
+      <span>{{item["ingredient_"+ lang]}}</span>
       <br>
       {{item.selling_price}} kr {{checkIfOut(item.stock)}}
       <br>
@@ -63,6 +63,10 @@ export default {
 }
 </script>
 <style scoped>
+  #orderButtons span {
+    font-size: 1.1em;
+  }
+
   button {
     background-color: transparent;
     border: black;
